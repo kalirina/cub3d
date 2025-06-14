@@ -6,13 +6,13 @@
 #    By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 12:37:33 by irkalini          #+#    #+#              #
-#    Updated: 2025/06/13 14:49:39 by irkalini         ###   ########.fr        #
+#    Updated: 2025/06/14 18:36:34 by irkalini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
-SRCS = srcs/main.c srcs/parsing.c \
+SRCS = srcs/main.c srcs/parsing_1.c srcs/parsing_2.c srcs/parsing_3.c \
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 OBJS = ${SRCS:.c=.o}

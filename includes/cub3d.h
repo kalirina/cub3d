@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/14 15:25:18 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/14 18:48:11 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,13 @@ typedef struct s_cub
 }	t_cub;
 
 //parsing
-int	is_valid_extension(char *filename, char *ext);
-int	parsing(t_cub *cub, char *filename);
-int	read_file(t_file *file, char *filename);
+int		is_valid_extension(char *filename, char *ext);
+int		parsing(t_cub *cub, char *filename);
+int		read_file(t_file *file, char *filename);
+int		set_color(t_file *file, int i, int num);
+int		is_empty_line(char *line);
+int		get_tokens(char *line, t_file *file);
+void	free_tokens(t_file *file);
+int		read_map(t_file *file);
 
 #endif

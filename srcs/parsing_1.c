@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:18:21 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/14 18:26:50 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/14 18:44:01 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int	is_valid_extension(char *filename, char *ext)
-{
-	char	*extension;
-	int		len;
-
-	len = ft_strlen(ext);
-	extension = ft_strrchr(filename, '.');
-	if (!extension || ft_strncmp(extension, ext, len) != 0 )
-		return (printf("Bad extension\n"), 0);
-	if (extension[len] != 0)
-		return (printf("Bad extension\n"), 0);
-	return (1);
-}
 
 int	parsing(t_cub *cub, char *filename)
 {
@@ -33,52 +19,12 @@ int	parsing(t_cub *cub, char *filename)
 	file = &cub->file;
 	if (!read_file(file, filename))
 		return (0);
-	printf("NO:%s\n", file->no_t);
-	printf("SO:%s\n", file->so_t);
-	printf("WE:%s\n", file->we_t);
-	printf("EA:%s\n", file->ea_t);
-	printf("F:%d,%d,%d\n", file->floor.r,file->floor.g,file->floor.b);
-	printf("C:%d,%d,%d\n", file->ceil.r,file->ceil.g,file->ceil.b);
-	return (1);
-}
-
-int	is_empty_line(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] != '\f' && line[i] != '\n' && line[i] != '\r' \
-			&& line[i] != '\t' && line[i] != '\v' && line[i] != 32)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	set_color(t_file *file, int i, int num)
-{
-	if (!ft_strncmp(file->tok[0], "F", 1))
-	{
-		if (i == 0)
-			file->floor.r = num;
-		else if (i == 1)
-			file->floor.g = num;
-		else
-			file->floor.b = num;
-	}
-	else if (!ft_strncmp(file->tok[0], "C", 1))
-	{
-		if (i == 0)
-			file->ceil.r = num;
-		else if (i == 1)
-			file->ceil.g = num;
-		else
-			file->ceil.b = num;
-	}
-	else
-		return (0);
+	// printf("NO:%s\n", file->no_t);
+	// printf("SO:%s\n", file->so_t);
+	// printf("WE:%s\n", file->we_t);
+	// printf("EA:%s\n", file->ea_t);
+	// printf("F:%d,%d,%d\n", file->floor.r,file->floor.g,file->floor.b);
+	// printf("C:%d,%d,%d\n", file->ceil.r,file->ceil.g,file->ceil.b);
 	return (1);
 }
 
@@ -154,49 +100,6 @@ int	get_data(t_file *file)
 	return (1);
 }
 
-int	get_tokens(char *line, t_file *file)
-{
-	int	i;
-	int	j;
-	int	start;
-
-	i = 0;
-	j = 0;
-	while (line[i])
-	{
-		while (line[i] == '\t' || line[i] == ' ')
-			i++;
-		if (!line[i] || line[i] == '\n')
-			break ;
-		start = i;
-		while (line[i] && line[i] != '\t' && line[i] != ' ' && line[i] != '\n')
-			i++;
-		if (j >= 2)
-			return (0);
-		file->tok[j] = malloc(sizeof(char) * (i - start) + 1);
-		if (!file->tok[j])
-			return (0); //free
-		ft_strlcpy(file->tok[j], line + start, i - start + 1);
-		j++;
-	}
-	file->tok[j] = NULL;
-	return (1);
-}
-
-void	free_tokens(t_file *file)
-{
-	int	i;
-
-	i = 0;
-	while (file->tok[i])
-		free(file->tok[i++]);
-}
-
-// int	read_map(t_file *file)
-// {
-
-// }
-
 int	read_file(t_file *file, char *filename)
 {
 	file->fd = open(filename, O_RDONLY);
@@ -215,8 +118,8 @@ int	read_file(t_file *file, char *filename)
 	}
 	if (!file->line)
 		return (0);
-	// if (read_map(file))
-	// 	return (0);
+	if (read_map(file))
+		return (0);
 	close(file->fd);
 	return (1);
 }
