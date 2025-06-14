@@ -6,15 +6,19 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:12 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/13 13:55:20 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/14 15:25:43 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	init_data(t_cub *cub)
+int	init_data(t_cub *cub)
 {
 	cub->file.map = NULL;
+	cub->file.tok = NULL;
+	cub->file.tok = malloc(sizeof(char *) * 3);
+	if (!cub->file.tok)
+		return (0);
 	cub->file.no_t = NULL;
 	cub->file.so_t = NULL;
 	cub->file.we_t = NULL;
@@ -27,6 +31,8 @@ void	init_data(t_cub *cub)
 	cub->file.ceil.b = 0;
 	cub->file.fd = 0;
 	cub->file.line = NULL;
+	cub->file.data_count = 0;
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -35,9 +41,10 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (printf("Bad arguments\n"), 1);
-	if (!is_valid_extension(argv[1]))
+	if (!is_valid_extension(argv[1], ".cub"))
 		return (1);
-	init_data(&cub);
+	if (!init_data(&cub))
+		return (1);
 	if (!parsing(&cub, argv[1]))
 		return (1);
 	//next moves

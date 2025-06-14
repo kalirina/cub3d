@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/13 13:56:50 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/14 15:25:18 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_col
 
 typedef struct s_file
 {
+	char	**tok;
+	int		data_count;
 	int		fd;
 	char	*line;
 	char	**map;
@@ -44,8 +46,8 @@ typedef struct s_cub
 }	t_cub;
 
 //parsing
-int	is_valid_extension(char *filename);
-int	parsing(t_cub *cub, char *file);
-int	read_file(t_cub *cub, char *file);
+int	is_valid_extension(char *filename, char *ext);
+int	parsing(t_cub *cub, char *filename);
+int	read_file(t_file *file, char *filename);
 
 #endif
