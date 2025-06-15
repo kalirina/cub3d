@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:18:21 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/14 18:44:01 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/15 14:59:10 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,14 @@ int	read_file(t_file *file, char *filename)
 				return (0);
 			free_tokens(file);
 		}
+		file->i++;
 		file->line = get_next_line(file->fd);
 	}
 	if (!file->line)
 		return (0);
-	if (read_map(file))
+	if (!read_map_1(file))
 		return (0);
+	read_map_2(file, filename);
 	close(file->fd);
 	return (1);
 }

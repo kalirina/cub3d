@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/14 18:48:11 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/15 16:47:05 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ typedef struct s_file
 	char	**tok;
 	int		data_count;
 	int		fd;
+	int		i;
+	int		max_length;
+	int		start_map;
 	char	*line;
 	char	**map;
 	char	*no_t;
@@ -53,6 +56,7 @@ int		set_color(t_file *file, int i, int num);
 int		is_empty_line(char *line);
 int		get_tokens(char *line, t_file *file);
 void	free_tokens(t_file *file);
-int		read_map(t_file *file);
+int		read_map_1(t_file *file);
+int		read_map_2(t_file *file, char *filename);
 
 #endif
