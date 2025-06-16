@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/15 16:47:05 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:01:26 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_file
 	int		data_count;
 	int		fd;
 	int		i;
+	int		player_found;
 	int		max_length;
 	int		start_map;
 	char	*line;

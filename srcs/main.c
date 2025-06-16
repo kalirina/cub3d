@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:12 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/15 15:11:17 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:01:51 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	init_data(t_cub *cub)
 	cub->file.ceil.b = 0;
 	cub->file.fd = 0;
 	cub->file.i = 0;
+	cub->file.player_found = 0;
 	cub->file.max_length = 0;
 	cub->file.start_map = 0;
 	cub->file.line = NULL;

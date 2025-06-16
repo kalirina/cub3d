@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:18:21 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/15 14:59:10 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:03:07 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,13 @@
 int	parsing(t_cub *cub, char *filename)
 {
 	t_file	*file;
+	int i = 0;
 
 	file = &cub->file;
 	if (!read_file(file, filename))
 		return (0);
-	// printf("NO:%s\n", file->no_t);
-	// printf("SO:%s\n", file->so_t);
-	// printf("WE:%s\n", file->we_t);
-	// printf("EA:%s\n", file->ea_t);
-	// printf("F:%d,%d,%d\n", file->floor.r,file->floor.g,file->floor.b);
-	// printf("C:%d,%d,%d\n", file->ceil.r,file->ceil.g,file->ceil.b);
+	if (!is_closed_map(file))
+		return (0);
 	return (1);
 }
 
@@ -120,6 +117,8 @@ int	read_file(t_file *file, char *filename)
 	if (!file->line)
 		return (0);
 	if (!read_map_1(file))
+		return (0);
+	if (file->player_found > 1)
 		return (0);
 	read_map_2(file, filename);
 	close(file->fd);
