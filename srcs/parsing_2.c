@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 18:30:30 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/14 18:33:52 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/17 16:00:55 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	is_valid_extension(char *filename, char *ext)
 	len = ft_strlen(ext);
 	extension = ft_strrchr(filename, '.');
 	if (!extension || ft_strncmp(extension, ext, len) != 0 )
-		return (printf("Bad extension\n"), 0);
+		return (printf("Error\nBad extension\n"), 0);
 	if (extension[len] != 0)
-		return (printf("Bad extension\n"), 0);
+		return (printf("Error\nBad extension\n"), 0);
 	return (1);
 }
 
@@ -39,15 +39,6 @@ int	is_empty_line(char *line)
 		i++;
 	}
 	return (1);
-}
-
-void	free_tokens(t_file *file)
-{
-	int	i;
-
-	i = 0;
-	while (file->tok[i])
-		free(file->tok[i++]);
 }
 
 int	get_tokens(char *line, t_file *file)
@@ -71,7 +62,7 @@ int	get_tokens(char *line, t_file *file)
 			return (0);
 		file->tok[j] = malloc(sizeof(char) * (i - start) + 1);
 		if (!file->tok[j])
-			return (0); //free
+			return (0);
 		ft_strlcpy(file->tok[j], line + start, i - start + 1);
 		j++;
 	}
@@ -100,6 +91,6 @@ int	set_color(t_file *file, int i, int num)
 			file->ceil.b = num;
 	}
 	else
-		return (0);
+		return (printf("Error\nBad type identifier\n"), 0);
 	return (1);
 }

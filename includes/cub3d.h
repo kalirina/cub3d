@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/16 15:01:26 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/17 16:46:58 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_file
 	int		fd;
 	int		i;
 	int		player_found;
-	int		max_length;
+	int		max_len;
 	int		start_map;
 	char	*line;
 	char	**map;
@@ -56,8 +56,12 @@ int		read_file(t_file *file, char *filename);
 int		set_color(t_file *file, int i, int num);
 int		is_empty_line(char *line);
 int		get_tokens(char *line, t_file *file);
-void	free_tokens(t_file *file);
 int		read_map_1(t_file *file);
 int		read_map_2(t_file *file, char *filename);
+int		is_closed_map(t_file *file);
+//cleaning
+void	free_split(char **split);
+void	free_tokens(t_file *file, int i);
+void	free_file_struct(t_cub *cub);
 
 #endif

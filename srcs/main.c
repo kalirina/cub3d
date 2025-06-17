@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:12 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/16 15:01:51 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/17 16:47:11 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	init_data(t_cub *cub)
 	cub->file.fd = 0;
 	cub->file.i = 0;
 	cub->file.player_found = 0;
-	cub->file.max_length = 0;
+	cub->file.max_len = 0;
 	cub->file.start_map = 0;
 	cub->file.line = NULL;
 	cub->file.data_count = 0;
@@ -44,13 +44,15 @@ int	main(int argc, char **argv)
 	t_cub	cub;
 
 	if (argc != 2)
-		return (printf("Bad arguments\n"), 1);
+		return (printf("Error\nBad arguments\n"), 1);
 	if (!is_valid_extension(argv[1], ".cub"))
 		return (1);
 	if (!init_data(&cub))
-		return (1);
+		return (printf("Error\nInitialisation problem\n"), 1);
 	if (!parsing(&cub, argv[1]))
-		return (1);
+		return (free_file_struct(&cub), 1);
+	printf("passed parsing\n");
+	free_file_struct(&cub);
 	//next moves
 	return (0);
 }

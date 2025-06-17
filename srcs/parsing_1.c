@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:18:21 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/16 15:03:07 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:40:22 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ int	parsing(t_cub *cub, char *filename)
 	file = &cub->file;
 	if (!read_file(file, filename))
 		return (0);
+	if (file->player_found > 1)
+		return (printf("Error\nToo many players\n"), free_split(file->map), 0);
 	if (!is_closed_map(file))
-		return (0);
+		return (free_split(file->map), 0);
 	return (1);
 }
 
@@ -35,20 +37,21 @@ int	get_color(t_file *file)
 	num = 0;
 	colors = ft_split(file->tok[1], ',');
 	if (!colors)
-		return (0); //free
+		return (free_split(colors), printf("Error\nft_split problem\n"), 0);
 	if (colors[3] != NULL)
-		return (0); //free
+		return (free_split(colors), printf("Error\nBad color\n"), 0);
 	while (colors[i])
 	{
 		num = ft_atoi(colors[i]);
 		if (!num && colors[i][0] != '0')
-			return (0);
+			return (free_split(colors), printf("Error\nft_atoi problem\n"), 0);
 		if (num < 0 || num > 255)
-			return (0);
+			return (free_split(colors), printf("Error\nBad color\n"), 0);
 		if (!set_color(file, i, num))
-			return (0);
+			return (free_split(colors), 0);
 		i++;
 	}
+	free_split(colors);
 	file->data_count++;
 	return (1);
 }
@@ -59,10 +62,10 @@ int	get_texture(t_file *file)
 
 	fd = 0;
 	if (ft_strncmp(file->tok[1], "./", 2))
-		return (0);
+		return (printf("Error\nPath should start with ./\n"), 0);
 	fd = open(file->tok[1], O_RDONLY);
 	if (fd == -1)
-		return (close(fd), 0);
+		return (close(fd), printf("Error\nFile problem\n"), 0);
 	close(fd);
 	if (!is_valid_extension(file->tok[1], ".xpm"))
 		return (0);
@@ -75,7 +78,7 @@ int	get_texture(t_file *file)
 	else if (!ft_strncmp(file->tok[0], "EA", 2))
 		file->ea_t = ft_strdup(file->tok[1]);
 	else
-		return (0);
+		return (printf("Error\nBad type identifier\n"), 0);
 	file->data_count++;
 	return (1);
 }
@@ -106,21 +109,23 @@ int	read_file(t_file *file, char *filename)
 		if (!is_empty_line(file->line))
 		{
 			if (!get_tokens(file->line, file))
-				return (0);
+				return (free_tokens(file, 1), 0);
 			if (!get_data(file))
-				return (0);
-			free_tokens(file);
+				return (free_tokens(file, 1), 0);
+			free_tokens(file, 0);
 		}
 		file->i++;
+		free(file->line);
 		file->line = get_next_line(file->fd);
 	}
+	if (file->tok)
+		free(file->tok);
 	if (!file->line)
-		return (0);
+		return (printf("Error\nNot enough information\n"), 0);
 	if (!read_map_1(file))
 		return (0);
-	if (file->player_found > 1)
-		return (0);
 	read_map_2(file, filename);
+	//free(file->line);
 	close(file->fd);
 	return (1);
 }

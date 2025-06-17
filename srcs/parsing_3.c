@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 18:34:06 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/16 17:52:25 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:32:23 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,18 @@ int	is_closed_map(t_file *file)
 				|| file->map[i][j] == 'S' || file->map[i][j] == 'E'\
 				|| file->map[i][j] == 'W')
 			{
-				
+				if (i == 0 || i == file->i || j == 0 || j == file->max_len - 1)
+					return (printf("Error\nMap is not closed\n"), 0);
+				if (file->map[i][j - 1] == 'P' || file->map[i][j + 1] == 'P'\
+					|| file->map[i - 1][j] == 'P'\
+					|| file->map[i + 1][j] == 'P')
+					return (printf("Error\nMap is not closed\n"), 0);
 			}
+			j++;
 		}
 		i++;
 	}
+	return (1);
 }
 
 int	is_valid_map_line(char *s)
@@ -59,7 +66,7 @@ void	replace_spaces(t_file *file)
 	while (file->line[i])
 	{
 		if (file->line[i] == ' ')
-			file->line[i] = 'S';
+			file->line[i] = 'P';
 		if (file->line[i] == 'N' || file->line[i] == 'S'\
 			|| file->line[i] == 'E' || file->line[i] == 'W')
 			file->player_found++;
@@ -67,9 +74,9 @@ void	replace_spaces(t_file *file)
 	}
 	if (file->line[ft_strlen(file->line) - 1] == '\n')
 		file->line[ft_strlen(file->line) - 1] = '\0';
-	while (ft_strlen(file->line) < file->max_length)
+	while (ft_strlen(file->line) < file->max_len)
 	{
-		new = ft_strjoin(file->line, "S");
+		new = ft_strjoin(file->line, "P");
 		free(file->line);
 		file->line = new;
 	}
@@ -83,16 +90,17 @@ int	read_map_1(t_file *file)
 		file->i++;
 	}
 	file->start_map = file->i;
-	file->max_length = ft_strlen(file->line);
+	file->max_len = ft_strlen(file->line);
 	while (file->line != NULL)
 	{
 		if (is_empty_line(file->line))
-			return (0);
+			return (printf("Error\nEmpty line in map\n"), 0);
 		if (!is_valid_map_line(file->line))
-			return (0);
-		if (ft_strlen(file->line) > file->max_length)
-			file->max_length = ft_strlen(file->line);
+			return (printf("Error\nInvalid char in map\n"), 0);
+		if (ft_strlen(file->line) > file->max_len)
+			file->max_len = ft_strlen(file->line);
 		file->i++;
+		free(file->line);
 		file->line = get_next_line(file->fd);
 	}
 	close(file->fd);
@@ -103,27 +111,27 @@ int	read_map_2(t_file *file, char *filename)
 {
 	int	i;
 
-	i = 0;
-	file->map = malloc(sizeof(char *) * file->i - file->start_map + 1);
+	i = -1;
+	file->map = malloc(sizeof(char *) * (file->i - file->start_map + 1));
 	if (!file->map)
-		return (0);
+		return (printf("Error\nMalloc\n"), 0);
 	file->fd = open(filename, O_RDONLY);
 	file->line = get_next_line(file->fd);
-	while (i < file->start_map)
+	while (++i < file->start_map)
 	{
+		free(file->line);
 		file->line = get_next_line(file->fd);
-		i++;
 	}
 	i = 0;
 	while (file->line != NULL)
 	{
 		replace_spaces(file);
-		file->map[i] = malloc(sizeof(char) * file->max_length + 1);
-		if (!file->map[i])
-			return (0);
 		file->map[i++] = ft_strdup(file->line);
+		free(file->line);
 		file->line = get_next_line(file->fd);
 	}
 	file->map[i] = NULL;
+	free(file->line);
+	close(file->fd);
 	return (1);
 }
