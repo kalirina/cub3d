@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 18:34:06 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/17 17:32:23 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:31:04 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,19 +84,22 @@ void	replace_spaces(t_file *file)
 
 int	read_map_1(t_file *file)
 {
-	while (is_empty_line(file->line))
+	while (file->line && is_empty_line(file->line))
 	{
+		free(file->line);
 		file->line = get_next_line(file->fd);
 		file->i++;
 	}
+	if (!file->line)
+		return (printf("Error\nNo map data\n"), 0);
 	file->start_map = file->i;
 	file->max_len = ft_strlen(file->line);
 	while (file->line != NULL)
 	{
 		if (is_empty_line(file->line))
-			return (printf("Error\nEmpty line in map\n"), 0);
+			return (printf("Error\nEmpty line in map\n"), drain_gnl(file), 0);
 		if (!is_valid_map_line(file->line))
-			return (printf("Error\nInvalid char in map\n"), 0);
+			return (printf("Error\nInvalid map char\n"), drain_gnl(file), 0);
 		if (ft_strlen(file->line) > file->max_len)
 			file->max_len = ft_strlen(file->line);
 		file->i++;

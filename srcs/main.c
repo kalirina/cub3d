@@ -6,38 +6,11 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:12 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/17 16:47:11 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:40:12 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int	init_data(t_cub *cub)
-{
-	cub->file.map = NULL;
-	cub->file.tok = NULL;
-	cub->file.tok = malloc(sizeof(char *) * 3);
-	if (!cub->file.tok)
-		return (0);
-	cub->file.no_t = NULL;
-	cub->file.so_t = NULL;
-	cub->file.we_t = NULL;
-	cub->file.ea_t = NULL;
-	cub->file.floor.r = 0;
-	cub->file.floor.g = 0;
-	cub->file.floor.b = 0;
-	cub->file.ceil.r = 0;
-	cub->file.ceil.g = 0;
-	cub->file.ceil.b = 0;
-	cub->file.fd = 0;
-	cub->file.i = 0;
-	cub->file.player_found = 0;
-	cub->file.max_len = 0;
-	cub->file.start_map = 0;
-	cub->file.line = NULL;
-	cub->file.data_count = 0;
-	return (1);
-}
 
 int	main(int argc, char **argv)
 {
@@ -47,12 +20,11 @@ int	main(int argc, char **argv)
 		return (printf("Error\nBad arguments\n"), 1);
 	if (!is_valid_extension(argv[1], ".cub"))
 		return (1);
-	if (!init_data(&cub))
+	if (!init_file_struct(&cub))
 		return (printf("Error\nInitialisation problem\n"), 1);
 	if (!parsing(&cub, argv[1]))
 		return (free_file_struct(&cub), 1);
 	printf("passed parsing\n");
 	free_file_struct(&cub);
-	//next moves
 	return (0);
 }

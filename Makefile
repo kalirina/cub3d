@@ -6,14 +6,14 @@
 #    By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 12:37:33 by irkalini          #+#    #+#              #
-#    Updated: 2025/06/17 16:30:39 by irkalini         ###   ########.fr        #
+#    Updated: 2025/06/18 15:39:23 by irkalini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
 SRCS = srcs/main.c srcs/parsing_1.c srcs/parsing_2.c srcs/parsing_3.c \
-		srcs/clean.c \
+		srcs/clean.c srcs/utils_parse.c\
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 OBJS = ${SRCS:.c=.o}
@@ -33,6 +33,9 @@ $(NAME): $(OBJS)
 
 $(LIBFT_A):
 	$(MAKE) -C $(LIBFT_DIR)
+
+valgrind: all
+	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./cub3d test.cub
 
 clean:
 	rm -f $(OBJS)

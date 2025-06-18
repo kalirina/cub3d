@@ -6,11 +6,20 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 18:30:30 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/17 16:00:55 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:27:05 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	drain_gnl(t_file *file)
+{
+	while (file->line != NULL)
+	{
+		free(file->line);
+		file->line = get_next_line(file->fd);
+	}
+}
 
 int	is_valid_extension(char *filename, char *ext)
 {
@@ -19,7 +28,7 @@ int	is_valid_extension(char *filename, char *ext)
 
 	len = ft_strlen(ext);
 	extension = ft_strrchr(filename, '.');
-	if (!extension || ft_strncmp(extension, ext, len) != 0 )
+	if (!extension || ft_strncmp(extension, ext, len) != 0)
 		return (printf("Error\nBad extension\n"), 0);
 	if (extension[len] != 0)
 		return (printf("Error\nBad extension\n"), 0);

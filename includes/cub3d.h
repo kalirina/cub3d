@@ -6,17 +6,17 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/17 16:46:58 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:43:07 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include "../get_next_line/get_next_line.h"
-#include "../libft/libft.h"
-#include <stdio.h>
-#include <fcntl.h>
+# include "../get_next_line/get_next_line.h"
+# include "../libft/libft.h"
+# include <stdio.h>
+# include <fcntl.h>
 
 typedef struct s_col
 {
@@ -59,6 +59,9 @@ int		get_tokens(char *line, t_file *file);
 int		read_map_1(t_file *file);
 int		read_map_2(t_file *file, char *filename);
 int		is_closed_map(t_file *file);
+void	drain_gnl(t_file *file);
+int		init_file_struct(t_cub *cub);
+int		is_digit_string(char *str);
 //cleaning
 void	free_split(char **split);
 void	free_tokens(t_file *file, int i);
