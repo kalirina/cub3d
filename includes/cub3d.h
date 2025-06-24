@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/18 16:41:35 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:30:31 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,30 @@ typedef struct s_file
 	t_col	ceil;
 }	t_file;
 
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
+typedef struct s_min
+{
+	float	player_x;
+	float	player_y;
+	float	scale;
+	float	minimap;
+}	t_min;
+
 typedef struct s_cub
 {
 	t_file	file;
 	void	*mlx;
 	void	*mlx_win;
+	t_img	img;
+	t_min	min;
 }	t_cub;
 
 //parsing
@@ -71,5 +90,7 @@ int		init_game(t_cub *cub);
 void	free_split(char **split);
 void	free_tokens(t_file *file, int i);
 void	free_file_struct(t_cub *cub);
+//bonus
+int		render_minimap(t_cub *cub);
 
 #endif

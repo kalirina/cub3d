@@ -6,7 +6,7 @@
 #    By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 12:37:33 by irkalini          #+#    #+#              #
-#    Updated: 2025/06/18 16:49:58 by irkalini         ###   ########.fr        #
+#    Updated: 2025/06/24 12:24:53 by irkalini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = cub3d
 
 SRCS = srcs/main.c srcs/parsing_1.c srcs/parsing_2.c srcs/parsing_3.c \
 		srcs/clean.c srcs/utils_parse.c srcs/init_mlx.c \
+		srcs/bonus_minimap.c \
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 OBJS = ${SRCS:.c=.o}
