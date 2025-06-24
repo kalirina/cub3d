@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/13 12:21:12 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/18 16:30:06 by irkalini         ###   ########.fr       */
+/*   Created: 2025/06/18 16:28:00 by irkalini          #+#    #+#             */
+/*   Updated: 2025/06/18 16:47:56 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	main(int argc, char **argv)
+int	init_game(t_cub *cub)
 {
-	t_cub	cub;
-
-	if (argc != 2)
-		return (printf("Error\nBad arguments\n"), 1);
-	if (!is_valid_extension(argv[1], ".cub"))
-		return (1);
-	if (!init_file_struct(&cub))
-		return (printf("Error\nInitialisation problem\n"), 1);
-	if (!parsing(&cub, argv[1]))
-		return (free_file_struct(&cub), 1);
-	free_file_struct(&cub);
-	if (!init_game(&cub))
-		return (1);
-	return (0);
+	cub->mlx = mlx_init();
+	if (!cub->mlx)
+		return (0);
+	cub->mlx_win = mlx_new_window(cub->mlx, 1920, 1080, "cub3d");
+	if (!cub->mlx_win)
+		return (free(cub->mlx), 0);
+	mlx_loop(cub->mlx);
+	return (1);
 }
