@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/24 17:30:31 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/25 16:04:27 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ typedef struct s_min
 	float	player_x;
 	float	player_y;
 	float	scale;
-	float	minimap;
+	float	minimap_size;
+	int		draw_x;
+	int		draw_y;
+	int		speed;
 }	t_min;
 
 typedef struct s_cub
@@ -89,7 +92,7 @@ int		init_game(t_cub *cub);
 //cleaning
 void	free_split(char **split);
 void	free_tokens(t_file *file, int i);
-void	free_file_struct(t_cub *cub);
+void	free_file_struct(t_cub *cub, int flag);
 //bonus
 int		render_minimap(t_cub *cub);
 

@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:52:10 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/18 14:27:14 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/25 11:13:56 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	free_tokens(t_file *file, int flag)
 	}
 }
 
-void	free_file_struct(t_cub *cub)
+void	free_file_struct(t_cub *cub, int flag)
 {
 	t_file	*file;
 
@@ -51,6 +51,9 @@ void	free_file_struct(t_cub *cub)
 		free(file->we_t);
 	if (file->line)
 		free(file->line);
-	if (file->map)
-		free_split(file->map);
+	if (flag)
+	{
+		if (file->map)
+			free_split(file->map);
+	}
 }
