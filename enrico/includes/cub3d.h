@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/24 17:24:58 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/06/25 16:49:32 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@
 # define D 100
 # define LEFT 65361
 # define RIGHT 65363
+# define ESC 65307
 
 # define PI 3.14159265359
+# define FOV 66 * (PI / 180)
 
 // typedef struct s_col
 // {
@@ -77,7 +79,7 @@ typedef struct	s_player
 typedef struct s_cub
 {
 //	t_file		file;
-	t_player	*player;
+	t_player	player;
 	void		*mlx;
 	void		*win;
 	void		*img;
@@ -115,8 +117,10 @@ int		key_released(int keycode, t_player	*player);
 void	handle_movement(t_player *player);
 
 
-void clear_image(t_cub *cub);
-void	put_pixel(int x, int y, int color, t_cub *cub);
+int		safe_exit();
+void	clear_image(t_cub *cub);
+void	draw_line(t_player *player, t_cub *cub, float start_x, int i);
+void	draw_square(int x, int y, int size, int color, t_cub *game);
 
 
 #endif
