@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:06:04 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/06/30 13:37:53 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:07:09 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,54 +60,33 @@ void	move(t_play *player)
 
 	speed = 5;
 	if (player->key_up)
-         player->y -= speed;
+        player->y -= speed;
     if (player->key_down)
         player->y += speed;
     if (player->key_left)
         player->x -= speed;
     if (player->key_right)
         player->x += speed;
-	// float cos_angle = cos(player->angle);
-    // float sin_angle = sin(player->angle);
-	// if (player->key_up)
-    // {
-    //     player->x += cos_angle * speed;
-    //     player->y += sin_angle * speed;
-    // }
-    // if (player->key_down)
-    // {
-    //     player->x -= cos_angle * speed;
-    //     player->y -= sin_angle * speed;
-    // }
-    // if (player->key_left)
-    // {
-    //     player->x += sin_angle * speed;
-    //     player->y -= cos_angle * speed;
-    // }
-    // if (player->key_right)
-    // {
-    //     player->x -= sin_angle * speed;
-    //     player->y += cos_angle * speed;
-    // }
+	
 }
 
-void	rotate(t_play *player)
-{
-	float	rotation_speed;
+// void	rotate(t_play *player)
+// {
+// 	float	rotation_speed;
 
-	rotation_speed = 0.03;
-	if (player->left_rotate)
-        player->angle -= rotation_speed;
-    if (player->right_rotate)
-        player->angle += rotation_speed;
-    if (player->angle > 2 * PI)
-        player->angle = 0;
-    if (player->angle < 0)
-        player->angle = 2 * PI;
-}
+// 	rotation_speed = 0.03;
+// 	if (player->left_rotate)
+//         player->angle -= rotation_speed;
+//     if (player->right_rotate)
+//         player->angle += rotation_speed;
+//     if (player->angle > 2 * PI)
+//         player->angle = 0;
+//     if (player->angle < 0)
+//         player->angle = 2 * PI;
+// }
 
 void	handle_movement(t_play *player)
 {
 	move(player);
-	rotate(player);
+	// rotate(player);
 }

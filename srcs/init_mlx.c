@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 16:28:00 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/30 14:49:32 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/30 19:03:50 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	render_game(t_cub *cub)
 {
 	handle_movement(&cub->player);
 	clear_image(cub);
-	render_square(cub, cub->player.x, cub->player.y, 10, 0xFF0000);
+	// render_square(cub, cub->player.x, cub->player.y, 10, 0xFF0000);
 	//render_main_frame(cub); //raycasting goes there
 	//render_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0); //x, y
@@ -24,11 +24,45 @@ int	render_game(t_cub *cub)
 	return (0);
 }
 
-void	init_player(t_play *player, int x, int y, int angle)
+void	init_camera(t_play *player)
 {
-	player->x = (float) x;
-	player->y = (float) y;
-	player->angle = (float) angle;
+	double	length;
+
+	length = tan(FOV / 2.0);
+	player->cam[0] = -player->dir[1] * length;
+	player->cam[1] = player->dir[0] * length;
+}
+
+void	init_vectors(t_play *player, char direction)
+{
+	if (direction == 'N')
+	{
+		player->dir[0] = 0;
+		player->dir[1] = -1;
+	}
+	else if (direction == 'S')
+	{
+		player->dir[0] = 0;
+		player->dir[1] = 1;
+	}
+	else if (direction == 'E')
+	{
+		player->dir[0] = 1;
+		player->dir[1] = 0;
+	}
+	else if (direction == 'W')
+	{
+		player->dir[0] = -1;
+		player->dir[1] = 0;
+	}
+	init_camera(player);
+}
+
+void	init_player(t_play *player, int x, int y, char	direction)
+{
+	player->x = (double) x;
+	player->y = (double) y;
+	init_vectors(player, direction);
 	player->key_down = false;
 	player->key_up = false;
 	player->key_right = false;
@@ -39,7 +73,7 @@ void	init_player(t_play *player, int x, int y, int angle)
 
 int	init_game(t_cub *cub)
 {
-	init_player(&cub->player, 960, 540, 0);
+	init_player(&cub->player, 960, 540, 'N');
 	cub->mlx = mlx_init();
 	if (!cub->mlx)
 		return (0);

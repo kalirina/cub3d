@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 16:32:03 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/06/30 14:18:46 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/30 18:55:12 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,21 @@ void	put_pixel(int x, int y, int color, t_cub *cub)
 	cub->addr[index + 2] = (color >> 16) & 0xFF;
 }
 
-int	render_square(t_cub *cub, int x, int y, int size, int color)
-{
-	int	i;
-	int	j;
+// int	render_square(t_cub *cub, int x, int y, int size, int color)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = y;
-	while (i < y + size)
-	{
-		j = x;
-		while (j < x + size)
-			put_pixel(j++, i, color, cub);
-		i++;
-	}
-	return (1);
-}
+// 	i = y;
+// 	while (i < y + size)
+// 	{
+// 		j = x;
+// 		while (j < x + size)
+// 			put_pixel(j++, i, color, cub);
+// 		i++;
+// 	}
+// 	return (1);
+// }
 
 void clear_image(t_cub *cub)
 {
