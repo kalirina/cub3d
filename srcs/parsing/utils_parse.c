@@ -6,11 +6,11 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:38:28 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/18 15:42:19 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/30 13:37:43 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	init_file_struct(t_cub *cub)
 {

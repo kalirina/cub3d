@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:12 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/18 16:30:06 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/25 11:13:48 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	main(int argc, char **argv)
 	if (!init_file_struct(&cub))
 		return (printf("Error\nInitialisation problem\n"), 1);
 	if (!parsing(&cub, argv[1]))
-		return (free_file_struct(&cub), 1);
-	free_file_struct(&cub);
+		return (free_file_struct(&cub, 1), 1);
+	free_file_struct(&cub, 0);
 	if (!init_game(&cub))
 		return (1);
 	return (0);

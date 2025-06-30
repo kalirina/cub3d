@@ -6,11 +6,11 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 18:30:30 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/18 14:27:05 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/30 13:37:35 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	drain_gnl(t_file *file)
 {
