@@ -6,11 +6,11 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 18:34:06 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/24 16:31:47 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/30 13:37:39 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	is_closed_map(t_file *file)
 {

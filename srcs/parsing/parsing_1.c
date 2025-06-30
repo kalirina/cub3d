@@ -6,11 +6,11 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:18:21 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/18 15:38:06 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/30 13:37:26 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	parsing(t_cub *cub, char *filename)
 {

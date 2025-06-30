@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/25 16:04:27 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/30 14:36:15 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,24 @@
 # include "../libft/libft.h"
 # include <stdio.h>
 # include <fcntl.h>
+# include <stdbool.h>
+# include <math.h>
 # include "../mlx_linux/minilibx-linux/mlx.h"
+
+# define WIDTH 1920
+# define HEIGHT 1080
+# define BLOCK 64
+
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define LEFT 65361
+# define RIGHT 65363
+# define ESC 65307
+
+# define PI 3.14159265359
+# define FOV 66 * (PI / 180)
 
 typedef struct s_col
 {
@@ -45,17 +62,13 @@ typedef struct s_file
 	t_col	ceil;
 }	t_file;
 
-typedef struct s_img
+typedef struct s_min
 {
-	void	*mlx_img;
-	char	*addr;
+	void	*img;
 	int		bpp;
 	int		line_len;
 	int		endian;
-}	t_img;
-
-typedef struct s_min
-{
+	char	*addr;
 	float	player_x;
 	float	player_y;
 	float	scale;
@@ -63,14 +76,33 @@ typedef struct s_min
 	int		draw_x;
 	int		draw_y;
 	int		speed;
+	int		first;
 }	t_min;
+
+typedef struct	s_play
+{
+	float	x;
+	float	y;
+	float	angle;
+	bool	key_up;
+	bool	key_down;
+	bool	key_left;
+	bool	key_right;
+	bool	left_rotate;
+	bool	right_rotate;
+}	t_play;
 
 typedef struct s_cub
 {
 	t_file	file;
+	t_play	player;
+	void	*img;
 	void	*mlx;
-	void	*mlx_win;
-	t_img	img;
+	void	*win;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	char	*addr;
 	t_min	min;
 }	t_cub;
 
@@ -95,5 +127,15 @@ void	free_tokens(t_file *file, int i);
 void	free_file_struct(t_cub *cub, int flag);
 //bonus
 int		render_minimap(t_cub *cub);
+int		init_min_struct(t_cub *cub);
+void	clear_image_mini(t_cub *cub);
+//movements
+void	put_pixel(int x, int y, int color, t_cub *cub);
+int		key_pressed(int keycode, t_play *player);
+int		key_released(int keycode, t_play	*player);
+void	handle_movement(t_play *player);
+int		safe_exit(int data);
+void	clear_image(t_cub *cub);
+int		render_square(t_cub *cub, int x, int y, int size, int color);
 
 #endif
