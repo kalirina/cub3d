@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 16:28:00 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/30 14:49:32 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/30 18:07:42 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	render_game(t_cub *cub)
 	clear_image(cub);
 	render_square(cub, cub->player.x, cub->player.y, 10, 0xFF0000);
 	//render_main_frame(cub); //raycasting goes there
-	//render_minimap(cub);
+	render_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0); //x, y
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->min.img, 1590, 0);
 	return (0);

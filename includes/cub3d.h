@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/30 14:36:15 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/06/30 18:46:34 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@
 
 # define PI 3.14159265359
 # define FOV 66 * (PI / 180)
+
+//bonus
+# define MINIMAP_SIZE 330
+# define MINIMAP_BLOCK 30
 
 typedef struct s_col
 {
@@ -124,7 +128,7 @@ int		init_game(t_cub *cub);
 //cleaning
 void	free_split(char **split);
 void	free_tokens(t_file *file, int i);
-void	free_file_struct(t_cub *cub, int flag);
+void	free_file_struct(t_cub *cub);
 //bonus
 int		render_minimap(t_cub *cub);
 int		init_min_struct(t_cub *cub);
