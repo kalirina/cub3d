@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/30 14:36:15 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/01 09:59:36 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define ESC 65307
 
 # define PI 3.14159265359
-# define FOV 66 * (PI / 180)
+# define FOV 66
 
 typedef struct s_col
 {
@@ -79,11 +79,26 @@ typedef struct s_min
 	int		first;
 }	t_min;
 
+typedef struct	s_dda
+{
+	double	cam_pos;
+	double	delta[2];
+	double	ray_dir[2];
+	double	res[2];
+	double	side_dist[2];
+	double	step[2];
+	int		map_cord[2];
+	int		x;
+	int		side;
+	char	wall_type;
+}	t_dda;
+
 typedef struct	s_play
 {
-	float	x;
-	float	y;
-	float	angle;
+	double	x;
+	double	y;
+	double	dir[2];
+	double	cam[2];
 	bool	key_up;
 	bool	key_down;
 	bool	key_left;
@@ -124,7 +139,7 @@ int		init_game(t_cub *cub);
 //cleaning
 void	free_split(char **split);
 void	free_tokens(t_file *file, int i);
-void	free_file_struct(t_cub *cub, int flag);
+void	free_file_struct(t_cub *cub);
 //bonus
 int		render_minimap(t_cub *cub);
 int		init_min_struct(t_cub *cub);
@@ -136,6 +151,10 @@ int		key_released(int keycode, t_play	*player);
 void	handle_movement(t_play *player);
 int		safe_exit(int data);
 void	clear_image(t_cub *cub);
-int		render_square(t_cub *cub, int x, int y, int size, int color);
+// int		render_square(t_cub *cub, int x, int y, int size, int color);
+//graphics
+void	add_line_to_img(t_cub *cub, t_dda *data, double line_height, int x);
+//raycasting
+void	raycasting(t_play *player, t_cub *cub);
 
 #endif

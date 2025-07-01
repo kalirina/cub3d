@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+         #
+#    By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 12:37:33 by irkalini          #+#    #+#              #
-#    Updated: 2025/06/30 13:39:04 by irkalini         ###   ########.fr        #
+#    Updated: 2025/07/01 10:00:30 by enrmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCS = srcs/main.c srcs/parsing/parsing_1.c srcs/parsing/parsing_2.c \
 		srcs/clean.c srcs/init_mlx.c \
 		srcs/bonus/bonus_minimap.c \
 		srcs/enrico/graphics.c srcs/enrico/movements.c \
+		srcs/enrico/raycasting.c \
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 OBJS = ${SRCS:.c=.o}
