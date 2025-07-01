@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/30 18:55:13 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/01 09:59:36 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,9 @@ void	handle_movement(t_play *player);
 int		safe_exit(int data);
 void	clear_image(t_cub *cub);
 // int		render_square(t_cub *cub, int x, int y, int size, int color);
+//graphics
+void	add_line_to_img(t_cub *cub, t_dda *data, double line_height, int x);
+//raycasting
+void	raycasting(t_play *player, t_cub *cub);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:47:58 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/06/30 19:03:01 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/01 10:49:28 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@ double	get_line_height(t_dda *data, t_play *player)
 	double	perp_dist;
 	int		line_height;
 
+	if (data->ray_dir[0] == 0 || data->ray_dir[1] == 0)
+   		return HEIGHT;
 	if (data->side == 0)
 		perp_dist = (data->map_cord[0] - player->x + (1 - data->step[0]) /2) / data->ray_dir[0];	
 	else
 		perp_dist = (data->map_cord[1] - player->y + (1 - data->step[1]) /2) / data->ray_dir[1];	
 	line_height = (int) (HEIGHT / perp_dist);
+	return (line_height);
 }
 
 void	check_side(t_dda *data)
@@ -52,16 +55,16 @@ void	dda(t_cub *cub, t_dda *data)
 		if (data->side_dist[0] < data->side_dist[1])
 		{
 			data->side_dist[0] += data->delta[0];
-			data->map_cord[0] += data->step[0];
+			data->map_cord[0] += (int) data->step[0];
 			data->side = 0;
 		}
 		else
 		{
 			data->side_dist[1] += data->delta[1];
-			data->map_cord[1] += data->step[1];
+			data->map_cord[1] += (int) data->step[1];
 			data->side = 1;
 		}
-		if (cub->file.map[data->map_cord[0]][data->map_cord[1]] == '1')
+		if (cub->file.map[data->map_cord[1]][data->map_cord[0]] == '1')
 			hit = true;
 	}
 	check_side(data);
@@ -83,12 +86,12 @@ void	find_step(t_play *player, t_dda *data)
 	if (data->ray_dir[1] < 0)
 	{
 		data->step[1] = -1;
-		data->side_dist[1] = (player->x - data->map_cord[1]) * data->delta[1];
+		data->side_dist[1] = (player->y - data->map_cord[1]) * data->delta[1];
 	}
 	else
 	{
 		data->step[1] = 1;
-		data->side_dist[1] = (data->map_cord[1] + 1.0 - player->x) * data->delta[1];
+		data->side_dist[1] = (data->map_cord[1] + 1.0 - player->y) * data->delta[1];
 	}
 }
 
@@ -98,22 +101,20 @@ void	config_dda(t_play *player, t_dda *data)
 	double	delta[2];
 	int		step[2];
 
-	data->map_cord[0] = (int) player->x;
-	data->map_cord[1] = (int) player->y;
+	data->map_cord[0] = (int) floor(player->x);
+	data->map_cord[1] = (int) floor(player->y);
 	data->delta[0] = fabs(1 / data->ray_dir[0]);
 	data->delta[1] = fabs(1 / data->ray_dir[1]);
-	find_step(player, &data);
+	find_step(player, data);
 }
 
 void	raycasting(t_play *player, t_cub *cub)
 {
 	t_dda	data;
 	int		x;
-	// double	ray_pos[2];
+	double	line_height;
 
 	x = 0;
-	// ray_pos[0] = player->x;
-	// ray_pos[1] = player->y;
 	while (x < WIDTH)
 	{
 		data.cam_pos = (2 * x) / (double) WIDTH - 1;
@@ -121,9 +122,8 @@ void	raycasting(t_play *player, t_cub *cub)
 		data.ray_dir[1] = player->dir[1] + (player->cam[1] * data.cam_pos);
 		config_dda(player, &data);
 		dda(cub, &data);
-		
-		// distance();
-		// draw(distance, cam_pos)
+		line_height = get_line_height(&data, player);
+		add_line_to_img(cub, &data, line_height, x);
 		x++;
 	}
 }

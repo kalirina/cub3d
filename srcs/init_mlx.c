@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 16:28:00 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/30 19:03:50 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/01 10:43:24 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 int	render_game(t_cub *cub)
 {
 	handle_movement(&cub->player);
-	clear_image(cub);
-	// render_square(cub, cub->player.x, cub->player.y, 10, 0xFF0000);
-	//render_main_frame(cub); //raycasting goes there
+	// clear_image(cub);
+	raycasting(&cub->player, cub);
 	//render_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0); //x, y
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->min.img, 1590, 0);
+	// mlx_put_image_to_window(cub->mlx, cub->win, cub->min.img, 1590, 0);
 	return (0);
 }
 
@@ -28,7 +27,7 @@ void	init_camera(t_play *player)
 {
 	double	length;
 
-	length = tan(FOV / 2.0);
+	length = tan((FOV * PI / 180.0) / 2.0);
 	player->cam[0] = -player->dir[1] * length;
 	player->cam[1] = player->dir[0] * length;
 }
@@ -73,7 +72,7 @@ void	init_player(t_play *player, int x, int y, char	direction)
 
 int	init_game(t_cub *cub)
 {
-	init_player(&cub->player, 960, 540, 'N');
+	init_player(&cub->player, 2.5, 2.5, 'W');
 	cub->mlx = mlx_init();
 	if (!cub->mlx)
 		return (0);
