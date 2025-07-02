@@ -36,6 +36,10 @@
 # define PI 3.14159265359
 # define FOV 66
 
+//bonus
+# define MINIMAP_SIZE 330
+# define MINIMAP_BLOCK 30
+
 typedef struct s_col
 {
 	int	r;
