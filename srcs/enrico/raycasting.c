@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:47:58 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/01 10:49:28 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/03 14:24:45 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ double	get_line_height(t_dda *data, t_play *player)
 	int		line_height;
 
 	if (data->ray_dir[0] == 0 || data->ray_dir[1] == 0)
-   		return HEIGHT;
+		return HEIGHT;
 	if (data->side == 0)
-		perp_dist = (data->map_cord[0] - player->x + (1 - data->step[0]) /2) / data->ray_dir[0];	
+		perp_dist = (data->map_cord[0] - player->x + (1 - data->step[0]) /2) / data->ray_dir[0];
 	else
-		perp_dist = (data->map_cord[1] - player->y + (1 - data->step[1]) /2) / data->ray_dir[1];	
+		perp_dist = (data->map_cord[1] - player->y + (1 - data->step[1]) /2) / data->ray_dir[1];
 	line_height = (int) (HEIGHT / perp_dist);
 	return (line_height);
 }
@@ -48,7 +48,7 @@ void	check_side(t_dda *data)
 void	dda(t_cub *cub, t_dda *data)
 {
 	bool	hit;
-	
+
 	hit = false;
 	while (!hit)
 	{

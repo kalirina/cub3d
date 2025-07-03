@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:06:04 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/01 10:50:33 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:01:03 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,6 @@ int	key_released(int keycode, t_play	*player)
 
 void	move(t_play *player)
 {
-	// int speed;
-
-	// speed = 5;
-	// if (player->key_up)
-    //     player->y -= speed;
-    // if (player->key_down)
-    //     player->y += speed;
-    // if (player->key_left)
-    //     player->x -= speed;
-    // if (player->key_right)
-    //     player->x += speed;
 	double speed = 0.1;
 
     if (player->key_up)
@@ -90,23 +79,6 @@ void	move(t_play *player)
         player->y += player->dir[0] * speed;
     }
 }
-
-
-
-// void	rotate(t_play *player)
-// {
-// 	float	rotation_speed;
-
-// 	rotation_speed = 0.03;
-// 	if (player->left_rotate)
-//         player->angle -= rotation_speed;
-//     if (player->right_rotate)
-//         player->angle += rotation_speed;
-//     if (player->angle > 2 * PI)
-//         player->angle = 0;
-//     if (player->angle < 0)
-//         player->angle = 2 * PI;
-// }
 
 void rotate(t_play *player)
 {

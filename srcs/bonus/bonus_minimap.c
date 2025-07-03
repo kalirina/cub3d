@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 12:24:06 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/30 18:40:02 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:38:30 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,38 @@ void	init_player_pos(t_cub *cub)
 	}
 }
 
-void	draw_minimap(t_cub *cub, int offset_x, int offset_y)
+void	draw_tile(t_cub *cub, int screen_x, int screen_y, char wall)
+{
+	int	tile_color;
+	int	x;
+	int	y;
+
+	if (wall == '1')
+		tile_color = 0x00333333;
+	else
+		tile_color = 0x00CCCCCC;
+	y = 0;
+	while (y < cub->min.scale)
+	{
+		x = 0;
+		while (x < cub->min.scale)
+		{
+			int px = screen_x + x;
+			int py = screen_y + y;
+			if (px >= 0 && px < MINIMAP_SIZE && py >= 0 && py < MINIMAP_SIZE)
+				draw_pixel(px, py, tile_color, cub);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	draw_minimap(t_cub *cub, double offset_x, double offset_y)
 {
 	int	map_i;
 	int	map_j;
 	int	screen_x;
 	int	screen_y;
-	int	tile_color;
-	int	draw_x;
-	int	draw_y;
 
 	map_i = 0;
 	while (cub->file.map[map_i])
@@ -99,27 +122,15 @@ void	draw_minimap(t_cub *cub, int offset_x, int offset_y)
 		map_j = 0;
 		while (cub->file.map[map_i][map_j])
 		{
-			screen_x = (map_j * BLOCK - offset_x) * \
-					((float)MINIMAP_BLOCK / BLOCK);
-			screen_y = (map_i * BLOCK - offset_y) * \
-					((float)MINIMAP_BLOCK / BLOCK);
-			if (cub->file.map[map_i][map_j] == '1')
-				tile_color = 0x00333333;
-			else
-				tile_color = 0x00CCCCCC;
-			draw_y = 0;
-			while (draw_y < MINIMAP_BLOCK)
+			screen_x = (map_j - offset_x) * cub->min.scale;
+			screen_y = (map_i - offset_y) * cub->min.scale;
+			if (screen_x + cub->min.scale < 0 || screen_x >= MINIMAP_SIZE ||
+				screen_y + cub->min.scale < 0 || screen_y >= MINIMAP_SIZE)
 			{
-				draw_x = 0;
-				while (draw_x < MINIMAP_BLOCK)
-				{
-					int px = screen_x + draw_x;
-					int py = screen_y + draw_y;
-					draw_pixel(px, py, tile_color, cub);
-					draw_x++;
-				}
-				draw_y++;
+				map_j++;
+				continue ;
 			}
+			draw_tile(cub, screen_x, screen_y, cub->file.map[map_i][map_j]);
 			map_j++;
 		}
 		map_i++;
@@ -128,12 +139,12 @@ void	draw_minimap(t_cub *cub, int offset_x, int offset_y)
 
 int	render_minimap(t_cub *cub)
 {
-	int	offset_x;
-	int	offset_y;
+	double	offset_x;
+	double	offset_y;
 
 	clear_image_mini(cub);
-	offset_x = cub->player.x - MINIMAP_SIZE / 2;
-	offset_y = cub->player.y - MINIMAP_SIZE / 2;
+	offset_x = cub->player.x - (MINIMAP_SIZE / (2.0 * cub->min.scale));
+	offset_y = cub->player.y - (MINIMAP_SIZE / (2.0 * cub->min.scale));
 	draw_minimap(cub, offset_x, offset_y);
 	draw_square(cub, MINIMAP_SIZE / 2 - 3, MINIMAP_SIZE / 2 - 3, 6, 0xFF0000);
 	return (1);
@@ -151,6 +162,6 @@ int	init_min_struct(t_cub *cub)
 			&min->endian);
 	min->first = 1;
 	min->scale = 30;
-	init_player_pos(cub);
+	//init_player_pos(cub);
 	return (1);
 }
