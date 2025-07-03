@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 12:24:06 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/03 16:38:30 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:44:02 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,24 +85,27 @@ void	init_player_pos(t_cub *cub)
 
 void	draw_tile(t_cub *cub, int screen_x, int screen_y, char wall)
 {
-	int	tile_color;
 	int	x;
 	int	y;
+	int	px;
+	int	py;
 
-	if (wall == '1')
-		tile_color = 0x00333333;
-	else
-		tile_color = 0x00CCCCCC;
 	y = 0;
 	while (y < cub->min.scale)
 	{
 		x = 0;
 		while (x < cub->min.scale)
 		{
-			int px = screen_x + x;
-			int py = screen_y + y;
+			px = screen_x + x;
+			py = screen_y + y;
 			if (px >= 0 && px < MINIMAP_SIZE && py >= 0 && py < MINIMAP_SIZE)
-				draw_pixel(px, py, tile_color, cub);
+			{
+				if (wall == '1')
+					draw_pixel(px, py, cub->min.wall_color, cub);
+				else
+					draw_pixel(px, py, cub->min.space_color, cub);
+			}
+
 			x++;
 		}
 		y++;
@@ -162,6 +165,8 @@ int	init_min_struct(t_cub *cub)
 			&min->endian);
 	min->first = 1;
 	min->scale = 30;
+	min->wall_color = 0x00333333;
+	min->space_color = 0x00CCCCCC;
 	//init_player_pos(cub);
 	return (1);
 }
