@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 16:28:00 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/04 12:45:28 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:52:59 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 int	render_game(t_cub *cub)
 {
 	handle_movement(&cub->player);
-	// crear_image();
 	raycasting(&cub->player, cub);
 	render_minimap(cub);
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0); //x, y
+	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->min.img, 1590, 0);
 	return (0);
 }
@@ -57,10 +56,10 @@ void	init_vectors(t_play *player, char direction)
 	init_camera(player);
 }
 
-void	init_player(t_play *player, int x, int y, char	direction)
+void	init_player(t_play *player, double x, double y, char direction)
 {
-	player->x = (double) x;
-	player->y = (double) y;
+	player->x = x;
+	player->y = y;
 	init_vectors(player, direction);
 	player->key_down = false;
 	player->key_up = false;
@@ -86,8 +85,8 @@ int	init_game(t_cub *cub)
 			&cub->endian);
 	if (!init_min_struct(cub))
 		return (0);
-	mlx_hook(cub->win, 2, 1L<<0, key_pressed, &cub->player);
-	mlx_hook(cub->win, 3, 1L<<1, key_released, &cub->player);
+	mlx_hook(cub->win, 2, 1L << 0, key_pressed, &cub->player);
+	mlx_hook(cub->win, 3, 1L << 1, key_released, &cub->player);
 	mlx_hook(cub->win, 17, 0, safe_exit, &cub);
 	mlx_loop_hook(cub->mlx, render_game, cub);
 	mlx_loop(cub->mlx);
