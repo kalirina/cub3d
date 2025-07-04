@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/01 09:59:36 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/04 13:01:14 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define BLOCK 64
 
 # define W 119
 # define A 97
@@ -153,6 +152,7 @@ int		safe_exit(int data);
 void	clear_image(t_cub *cub);
 // int		render_square(t_cub *cub, int x, int y, int size, int color);
 //graphics
+double	get_line_height(t_dda *data, t_play *player);
 void	add_line_to_img(t_cub *cub, t_dda *data, double line_height, int x);
 //raycasting
 void	raycasting(t_play *player, t_cub *cub);
