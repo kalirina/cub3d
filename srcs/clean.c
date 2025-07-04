@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:52:10 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/30 18:44:38 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:46:39 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,10 @@ void	free_file_struct(t_cub *cub)
 		free(file->line);
 	if (file->map)
 		free_split(file->map);
+}
+
+void	free_all(t_cub *cub)
+{
+	free_file_struct(cub);
+	//free structures
 }

@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 12:24:06 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/01 11:00:13 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:35:32 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,14 @@ void	draw_pixel(int x, int y, int color, t_cub *cub)
 	int	index;
 
 	if (x < 0 || x >= 330 || y < 0 || y >= 330)
-		return;
+		return ;
 	index = y * cub->min.line_len + x * cub->min.bpp / 8;
 	cub->min.addr[index] = color & 0xFF;
 	cub->min.addr[index + 1] = (color >> 8) & 0xFF;
 	cub->min.addr[index + 2] = (color >> 16) & 0xFF;
 }
 
-void clear_image_mini(t_cub *cub)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < 330)
-	{
-		x = 0;
-		while (x < 330)
-		{
-			draw_pixel(x, y, 0, cub);
-			x++;
-		}
-		y++;
-	}
-}
-
-int	draw_square(t_cub *cub, int x, int y, int size, int color)
+int	draw_square(t_cub *cub, int x, int y, int size)
 {
 	int	i;
 	int	j;
@@ -52,86 +34,77 @@ int	draw_square(t_cub *cub, int x, int y, int size, int color)
 	{
 		j = x;
 		while (j < x + size)
-			draw_pixel(j++, i, color, cub);
+			draw_pixel(j++, i, cub->min.player_color, cub);
 		i++;
 	}
 	return (1);
 }
 
-// void	find_player(t_cub *cub)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	while (cub->file.map[i])
-// 	{
-// 		j = 0;
-// 		while (cub->file.map[i][j])
-// 		{
-// 			if (cub->file.map[i][j] == 'N' || cub->file.map[i][j] == 'S'\
-// 				|| cub->file.map[i][j] == 'E' || cub->file.map[i][j] == 'W')
-// 			{
-// 				cub->min.player_x = j;
-// 				cub->min.player_y = i;
-// 				return ;
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
-
-void	draw_easy_minimap(t_cub * cub)
+void	draw_tile(t_cub *cub, int screen_x, int screen_y, char wall)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
+	int	px;
+	int	py;
 
-	i = 0;
-	cub->min.scale = 30;
-	cub->min.draw_y = 0;
-	while (cub->file.map[i])
+	y = 0;
+	while (y < cub->min.scale)
 	{
-		j = 0;
-		cub->min.draw_x = 0;
-		while (cub->file.map[i][j])
+		x = 0;
+		while (x < cub->min.scale)
 		{
-			if (cub->file.map[i][j] == '1')
-				draw_square(cub, cub->min.draw_x, cub->min.draw_y, cub->min.scale, 0x00101010);
-			cub->min.draw_x += cub->min.scale;
-			j++;
+			px = screen_x + x;
+			py = screen_y + y;
+			if (px >= 0 && px < MINIMAP_SIZE && py >= 0 && py < MINIMAP_SIZE)
+			{
+				if (wall == '1')
+					draw_pixel(px, py, cub->min.wall_color, cub);
+				else
+					draw_pixel(px, py, cub->min.space_color, cub);
+			}
+			x++;
 		}
-		cub->min.draw_y += cub->min.scale;
-		i++;
+		y++;
 	}
 }
 
-int	render_minimap(t_cub *cub) //330x330
+void	draw_minimap(t_cub *cub, double offset_x, double offset_y)
 {
-	if (cub->min.first)
+	int	map_i;
+	int	map_j;
+	int	screen_x;
+	int	screen_y;
+
+	map_i = 0;
+	while (cub->file.map[map_i])
 	{
-		clear_image_mini(cub);
-		draw_square(cub, 0, 0, 330, 0x00696969); //background
-		draw_easy_minimap(cub);
+		map_j = 0;
+		while (cub->file.map[map_i][map_j])
+		{
+			screen_x = (map_j - offset_x) * cub->min.scale;
+			screen_y = (map_i - offset_y) * cub->min.scale;
+			if (screen_x + cub->min.scale < 0 || screen_x >= MINIMAP_SIZE || \
+				screen_y + cub->min.scale < 0 || screen_y >= MINIMAP_SIZE)
+			{
+				map_j++;
+				continue ;
+			}
+			draw_tile(cub, screen_x, screen_y, cub->file.map[map_i][map_j]);
+			map_j++;
+		}
+		map_i++;
 	}
-	cub->min.first = 0;
-	//render_square(cub, cub->min.player_x, cub->min.player_y, 6, 0x00FF0000); //player in the centre
-	return (1);
 }
 
-int	init_min_struct(t_cub *cub)
+int	render_minimap(t_cub *cub)
 {
-	t_min	*min;
+	double	offset_x;
+	double	offset_y;
 
-	min = &cub->min;
-	min->img = mlx_new_image(cub->mlx, 330, 330);
-	if (!min->img)
-		return (free(cub->mlx), free(cub->win), 0);
-	min->addr = mlx_get_data_addr(min->img, &min->bpp, &min->line_len, \
-			&min->endian);
-	min->first = 1;
-	// find_player(cub);
-	// min->player_x += 12;
-	// min->player_y += 12;
+	clear_image_mini(cub);
+	offset_x = cub->player.x - (MINIMAP_SIZE / (2.0 * cub->min.scale));
+	offset_y = cub->player.y - (MINIMAP_SIZE / (2.0 * cub->min.scale));
+	draw_minimap(cub, offset_x, offset_y);
+	draw_square(cub, MINIMAP_SIZE / 2 - 3, MINIMAP_SIZE / 2 - 3, 6);
 	return (1);
 }
