@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/04 13:01:14 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/04 14:56:09 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ int		init_game(t_cub *cub);
 void	free_split(char **split);
 void	free_tokens(t_file *file, int i);
 void	free_file_struct(t_cub *cub);
+int		safe_exit(int data);
 //bonus
 int		render_minimap(t_cub *cub);
 int		init_min_struct(t_cub *cub);
