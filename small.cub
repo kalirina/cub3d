@@ -3,8 +3,8 @@ SO ./textures/north_copy.xpm
 WE ./textures/north_copy_2.xpm
 EA ./textures/north_copy_3.xpm
 
-F 220,100,0
-C 225,30,0
+F 60,60,60
+C 128,128,128
 
 11111111111
 10000000001

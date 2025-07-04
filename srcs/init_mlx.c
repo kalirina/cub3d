@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 16:28:00 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/04 12:52:59 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/04 15:38:19 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ void	init_player(t_play *player, double x, double y, char direction)
 
 int	init_game(t_cub *cub)
 {
-	init_player(&cub->player, 2.5, 2.5, 'W');
+	find_player(cub);
+	init_player(&cub->player, cub->file.player_pos[0] + 0.5, \
+		cub->file.player_pos[1] + 0.5, cub->file.player_dir);
 	cub->mlx = mlx_init();
 	if (!cub->mlx)
 		return (0);

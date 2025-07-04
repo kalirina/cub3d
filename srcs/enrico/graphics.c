@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 16:32:03 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/04 13:01:29 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/04 15:01:23 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ void	add_line_to_img(t_cub *cub, t_dda *data, double line_height, int x)
 		end = HEIGHT;
 	y = 0;
 	while (y < start)
-		put_pixel(x, y++, 0xAAAAAA, cub);
+		put_pixel(x, y++, cub->file.ceil_color, cub);
 	while (y < end)
 		put_pixel(x, y++, get_wall_color(data), cub);
 	while (y < HEIGHT)
-		put_pixel(x, y++, 0xAAAAAA, cub);
+		put_pixel(x, y++, cub->file.floor_color, cub);
 }
 
 double	get_line_height(t_dda *data, t_play *player)

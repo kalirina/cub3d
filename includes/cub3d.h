@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/04 13:01:14 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/04 15:38:47 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_file
 	int		fd;
 	int		i;
 	int		player_found;
+	int		player_pos[2];
+	char	player_dir;
 	int		max_len;
 	int		start_map;
 	char	*line;
@@ -61,6 +63,8 @@ typedef struct s_file
 	char	*so_t;
 	char	*we_t;
 	char	*ea_t;
+	int		floor_color;
+	int		ceil_color;
 	t_col	floor;
 	t_col	ceil;
 }	t_file;
@@ -140,6 +144,7 @@ int		is_closed_map(t_file *file);
 void	drain_gnl(t_file *file);
 int		init_file_struct(t_cub *cub);
 int		is_digit_string(char *str);
+void	find_player(t_cub *cub);
 //minilibx
 int		init_game(t_cub *cub);
 //cleaning
