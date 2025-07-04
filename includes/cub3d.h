@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/03 16:40:53 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:48:23 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_min
 	int		first;
 	int		wall_color;
 	int		space_color;
+	int		player_color;
 }	t_min;
 
 typedef struct	s_dda
@@ -146,16 +147,18 @@ int		init_game(t_cub *cub);
 void	free_split(char **split);
 void	free_tokens(t_file *file, int i);
 void	free_file_struct(t_cub *cub);
+void	free_all(t_cub *cub);
 //bonus
 int		render_minimap(t_cub *cub);
 int		init_min_struct(t_cub *cub);
 void	clear_image_mini(t_cub *cub);
+void	draw_pixel(int x, int y, int color, t_cub *cub);
 //movements
 void	put_pixel(int x, int y, int color, t_cub *cub);
-int		key_pressed(int keycode, t_play *player);
+int		key_pressed(int keycode, t_play *player, t_cub *cub);
 int		key_released(int keycode, t_play	*player);
 void	handle_movement(t_play *player);
-int		safe_exit(int data);
+int		safe_exit(t_cub *cub, int data);
 void	clear_image(t_cub *cub);
 // int		render_square(t_cub *cub, int x, int y, int size, int color);
 //graphics

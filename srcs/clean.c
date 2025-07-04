@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:52:10 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/03 15:14:44 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:46:39 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,10 @@ void	free_file_struct(t_cub *cub)
 		free(file->line);
 	if (file->map)
 		free_split(file->map);
+}
+
+void	free_all(t_cub *cub)
+{
+	free_file_struct(cub);
+	//free structures
 }
