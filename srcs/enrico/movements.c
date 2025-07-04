@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:06:04 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/01 10:50:33 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:57:51 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	safe_exit(int data)
 {
-	//free
 	exit(data);
 }
 
@@ -56,81 +55,58 @@ int	key_released(int keycode, t_play	*player)
 
 void	move(t_play *player)
 {
-	// int speed;
+	double	speed;
 
-	// speed = 5;
-	// if (player->key_up)
-    //     player->y -= speed;
-    // if (player->key_down)
-    //     player->y += speed;
-    // if (player->key_left)
-    //     player->x -= speed;
-    // if (player->key_right)
-    //     player->x += speed;
-	double speed = 0.1;
-
-    if (player->key_up)
-    {
-        player->x += player->dir[0] * speed;
-        player->y += player->dir[1] * speed;
-    }
-    if (player->key_down)
-    {
-        player->x -= player->dir[0] * speed;
-        player->y -= player->dir[1] * speed;
-    }
-    if (player->key_left)
-    {
-        player->x += player->dir[1] * speed;
-        player->y -= player->dir[0] * speed;
-    }
-    if (player->key_right)
-    {
-        player->x -= player->dir[1] * speed;
-        player->y += player->dir[0] * speed;
-    }
+	speed = 0.05;
+	if (player->key_up)
+	{
+		player->x += player->dir[0] * speed;
+		player->y += player->dir[1] * speed;
+	}
+	if (player->key_down)
+	{
+		player->x -= player->dir[0] * speed;
+		player->y -= player->dir[1] * speed;
+	}
+	if (player->key_left)
+	{
+		player->x += player->dir[1] * speed;
+		player->y -= player->dir[0] * speed;
+	}
+	if (player->key_right)
+	{
+		player->x -= player->dir[1] * speed;
+		player->y += player->dir[0] * speed;
+	}
 }
 
-
-
+//DA RISCRIVERE
 // void	rotate(t_play *player)
 // {
-// 	float	rotation_speed;
+// 	double	old_dir_x;
+// 	double	old_cam_x;
+// 	double	rot_speed;
+// 	double	angle;
 
-// 	rotation_speed = 0.03;
-// 	if (player->left_rotate)
-//         player->angle -= rotation_speed;
-//     if (player->right_rotate)
-//         player->angle += rotation_speed;
-//     if (player->angle > 2 * PI)
-//         player->angle = 0;
-//     if (player->angle < 0)
-//         player->angle = 2 * PI;
+// 	rot_speed = 0.025;
+// 	if (player->left_rotate || player->right_rotate)
+// 	{
+// 		angle = player->right_rotate ? rot_speed : -rot_speed;
+// 		old_dir_x = player->dir[0];
+// 		old_cam_x = player->cam[0];
+// 		player->dir[0] = player->dir[0] * cos(angle) 
+//		- player->dir[1] * sin(angle);
+// 		player->dir[1] = old_dir_x * sin(angle) 
+//		+ player->dir[1] * cos(angle);
+// 		player->cam[0] = player->cam[0] * cos(angle)
+//		- player->cam[1] * sin(angle);
+// 		player->cam[1] = old_cam_x * sin(angle) + player->cam[1] * cos(angle);
+// 	}
 // }
-
-void rotate(t_play *player)
-{
-    double old_dir_x, old_cam_x;
-    double rot_speed = 0.05;
-
-    if (player->left_rotate || player->right_rotate)
-    {
-        double angle = player->right_rotate ? rot_speed : -rot_speed;
-
-        old_dir_x = player->dir[0];
-        old_cam_x = player->cam[0];
-
-        player->dir[0] = player->dir[0] * cos(angle) - player->dir[1] * sin(angle);
-        player->dir[1] = old_dir_x * sin(angle) + player->dir[1] * cos(angle);
-
-        player->cam[0] = player->cam[0] * cos(angle) - player->cam[1] * sin(angle);
-        player->cam[1] = old_cam_x * sin(angle) + player->cam[1] * cos(angle);
-    }
-}
-
 
 void	handle_movement(t_play *player)
 {
 	move(player);
-	rotate(player);
 }
+
+// rotate(player);
