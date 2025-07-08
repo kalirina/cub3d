@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:06:04 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/04 15:18:41 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/08 17:07:12 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,5 @@ void	rotate(t_play *player)
 void	handle_movement(t_play *player)
 {
 	move(player);
-	rotate(player);
+	//rotate(player);
 }

@@ -6,7 +6,7 @@
 #    By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 12:37:33 by irkalini          #+#    #+#              #
-#    Updated: 2025/07/04 12:51:02 by irkalini         ###   ########.fr        #
+#    Updated: 2025/07/08 12:55:18 by irkalini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS = srcs/main.c srcs/parsing/parsing_1.c srcs/parsing/parsing_2.c \
 		srcs/clean.c srcs/init_mlx.c \
 		srcs/bonus/bonus_minimap.c srcs/bonus/bonus_minimap_2.c \
 		srcs/enrico/graphics.c srcs/enrico/movements.c \
-		srcs/enrico/raycasting.c \
+		srcs/enrico/raycasting.c srcs/bonus/bonus_mouse_rotate.c \
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 OBJS = ${SRCS:.c=.o}

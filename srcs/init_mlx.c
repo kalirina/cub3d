@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 16:28:00 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/04 15:38:19 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/08 17:08:25 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	init_game(t_cub *cub)
 	find_player(cub);
 	init_player(&cub->player, cub->file.player_pos[0] + 0.5, \
 		cub->file.player_pos[1] + 0.5, cub->file.player_dir);
+	cub->ignore_next_mouse = false;
 	cub->mlx = mlx_init();
 	if (!cub->mlx)
 		return (0);
@@ -89,6 +90,8 @@ int	init_game(t_cub *cub)
 		return (0);
 	mlx_hook(cub->win, 2, 1L << 0, key_pressed, &cub->player);
 	mlx_hook(cub->win, 3, 1L << 1, key_released, &cub->player);
+	mlx_mouse_hide(cub->mlx, cub->win);
+	mlx_hook(cub->win, 6, 0, mouse_move_handler, cub);
 	mlx_hook(cub->win, 17, 0, safe_exit, &cub);
 	mlx_loop_hook(cub->mlx, render_game, cub);
 	mlx_loop(cub->mlx);
