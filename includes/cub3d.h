@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/09 16:58:43 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/09 18:21:07 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,10 +169,10 @@ void	move_left_right(t_play *player, t_cub *cub, int key, double speed);
 void	handle_movement_bonus(t_play *player, t_cub *cub);
 //movements
 void	put_pixel(int x, int y, int color, t_cub *cub);
-int		key_pressed(int keycode, t_play *player, t_cub *cub);
-int		key_released(int keycode, t_play	*player);
+int		key_pressed(int keycode, void *param);
+int		key_released(int keycode, void *param);
 void	handle_movement(t_play *player);
-int		safe_exit(t_cub *cub, int data);
+int		safe_exit(void *param);
 void	clear_image(t_cub *cub);
 // int		render_square(t_cub *cub, int x, int y, int size, int color);
 //graphics

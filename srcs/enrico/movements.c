@@ -6,30 +6,34 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:06:04 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/09 16:57:10 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/09 18:41:52 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	safe_exit(t_cub *cub, int data)
+int	safe_exit(void *param)
 {
+	t_cub	*cub;
+
+	cub = (t_cub *)param;
 	if (cub->img)
 		mlx_destroy_image(cub->mlx, cub->img);
-	if (cub->min.img)
-		mlx_destroy_image(cub->mlx, cub->min.img);
 	if (cub->win)
 		mlx_destroy_window(cub->mlx, cub->win);
 	free_all(cub);
-	if (cub->mlx)
-		free(cub->mlx);
-	exit(data);
+	exit(0);
 }
 
-int	key_pressed(int keycode, t_play *player, t_cub *cub)
+int	key_pressed(int keycode, void *param)
 {
+	t_cub	*cub;
+	t_play	*player;
+
+	cub = (t_cub *)param;
+	player = &cub->player;
 	if (keycode == ESC)
-		safe_exit(cub, 1);
+		safe_exit(cub);
 	if (keycode == W)
 		player->key_up = true;
 	else if (keycode == S)
@@ -45,8 +49,13 @@ int	key_pressed(int keycode, t_play *player, t_cub *cub)
 	return (0);
 }
 
-int	key_released(int keycode, t_play	*player)
+int	key_released(int keycode, void *param)
 {
+	t_cub	*cub;
+	t_play	*player;
+
+	cub = (t_cub *)param;
+	player = &cub->player;
 	if (keycode == W)
 		player->key_up = false;
 	else if (keycode == S)
@@ -89,27 +98,28 @@ void	move(t_play *player)
 	}
 }
 
-//DA RISCRIVERE
 void	rotate(t_play *player)
 {
-	double	old_dir_x;
-	double	old_cam_x;
+	double	tmp_x;
 	double	rot_speed;
 	double	angle;
 
 	rot_speed = 0.025;
 	if (player->left_rotate || player->right_rotate)
 	{
-		angle = player->right_rotate ? rot_speed : -rot_speed;
-		old_dir_x = player->dir[0];
-		old_cam_x = player->cam[0];
+		if (player->right_rotate)
+			angle = rot_speed;
+		else if (player->left_rotate)
+			angle = -rot_speed;
+		tmp_x = player->dir[0];
 		player->dir[0] = player->dir[0] * cos(angle)
-		- player->dir[1] * sin(angle);
-		player->dir[1] = old_dir_x * sin(angle)
-		+ player->dir[1] * cos(angle);
+			- player->dir[1] * sin(angle);
+		player->dir[1] = tmp_x * sin(angle)
+			+ player->dir[1] * cos(angle);
+		tmp_x = player->cam[0];
 		player->cam[0] = player->cam[0] * cos(angle)
-		- player->cam[1] * sin(angle);
-		player->cam[1] = old_cam_x * sin(angle) + player->cam[1] * cos(angle);
+			- player->cam[1] * sin(angle);
+		player->cam[1] = tmp_x * sin(angle) + player->cam[1] * cos(angle);
 	}
 }
 
