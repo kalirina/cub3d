@@ -6,7 +6,7 @@
 #    By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 12:37:33 by irkalini          #+#    #+#              #
-#    Updated: 2025/07/08 12:55:18 by irkalini         ###   ########.fr        #
+#    Updated: 2025/07/09 17:09:26 by irkalini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,20 @@ NAME = cub3d
 
 SRCS = srcs/main.c srcs/parsing/parsing_1.c srcs/parsing/parsing_2.c \
 		srcs/parsing/parsing_3.c srcs/parsing/utils_parse.c\
-		srcs/clean.c srcs/init_mlx.c \
-		srcs/bonus/bonus_minimap.c srcs/bonus/bonus_minimap_2.c \
+		srcs/clean.c srcs/init_mlx.c srcs/enrico/raycasting.c \
 		srcs/enrico/graphics.c srcs/enrico/movements.c \
-		srcs/enrico/raycasting.c srcs/bonus/bonus_mouse_rotate.c \
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
+BONUS =srcs/main.c srcs/parsing/parsing_1.c srcs/parsing/parsing_2.c \
+		srcs/parsing/parsing_3.c srcs/parsing/utils_parse.c\
+		srcs/clean.c srcs/bonus/bonus_init_mlx.c srcs/enrico/raycasting.c \
+		srcs/enrico/graphics.c srcs/bonus/bonus_movements.c \
+		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
+		srcs/bonus/bonus_wall_coll.c srcs/bonus/bonus_minimap.c \
+		srcs/bonus/bonus_minimap_2.c srcs/bonus/bonus_mouse_rotate.c \
+
 OBJS = ${SRCS:.c=.o}
+BONUS_OBJS = ${BONUS:.c=.o}
 
 INCLUDES = -I includes
 
@@ -46,11 +53,11 @@ $(LIBFT_A):
 $(MLX_A):
 	$(MAKE) -C $(MLX_DIR)
 
-valgrind: all
-	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./cub3d small.cub
+bonus: $(BONUS_OBJS)
+	$(CC) $(FLAGS) -o $(NAME) $(BONUS_OBJS) $(MLX_FLAGS) $(INCLUDES) $(LIBFT_A)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(BONUS_OBJS)
 	$(MAKE) clean -C $(MLX_DIR)
 	$(MAKE) clean -C $(LIBFT_DIR)
 

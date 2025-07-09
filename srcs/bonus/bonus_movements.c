@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movements.c                                        :+:      :+:    :+:   */
+/*   bonus_movements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/24 15:06:04 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/09 16:57:10 by irkalini         ###   ########.fr       */
+/*   Created: 2025/07/09 16:55:51 by irkalini          #+#    #+#             */
+/*   Updated: 2025/07/09 16:58:33 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../includes/cub3d.h"
 
@@ -62,33 +63,6 @@ int	key_released(int keycode, t_play	*player)
 	return (0);
 }
 
-void	move(t_play *player)
-{
-	double	speed;
-
-	speed = 0.05;
-	if (player->key_up)
-	{
-		player->x += player->dir[0] * speed;
-		player->y += player->dir[1] * speed;
-	}
-	if (player->key_down)
-	{
-		player->x -= player->dir[0] * speed;
-		player->y -= player->dir[1] * speed;
-	}
-	if (player->key_left)
-	{
-		player->x += player->dir[1] * speed;
-		player->y -= player->dir[0] * speed;
-	}
-	if (player->key_right)
-	{
-		player->x -= player->dir[1] * speed;
-		player->y += player->dir[0] * speed;
-	}
-}
-
 //DA RISCRIVERE
 void	rotate(t_play *player)
 {
@@ -113,8 +87,8 @@ void	rotate(t_play *player)
 	}
 }
 
-void	handle_movement(t_play *player)
+void	handle_movement_bonus(t_play *player, t_cub *cub)
 {
-	move(player);
+	move_bonus(player, cub);
 	rotate(player);
 }

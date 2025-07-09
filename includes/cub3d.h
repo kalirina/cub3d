@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/08 17:08:58 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:58:43 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@
 //bonus
 # define MINIMAP_SIZE 330
 # define MINIMAP_BLOCK 30
+
+#ifndef BONUS
+# define BONUS 0
+#endif
 
 typedef struct s_col
 {
@@ -109,13 +113,13 @@ typedef struct	s_play
 	double	y;
 	double	dir[2];
 	double	cam[2];
+	double	move_speed;
 	bool	key_up;
 	bool	key_down;
 	bool	key_left;
 	bool	key_right;
 	bool	left_rotate;
 	bool	right_rotate;
-	int		old_mouse_x;
 }	t_play;
 
 typedef struct s_cub
@@ -129,8 +133,8 @@ typedef struct s_cub
 	int		line_len;
 	int		endian;
 	char	*addr;
+	int		bonus;
 	t_min	min;
-	bool	ignore_next_mouse;
 }	t_cub;
 
 //parsing
@@ -160,6 +164,9 @@ int		init_min_struct(t_cub *cub);
 void	clear_image_mini(t_cub *cub);
 void	draw_pixel(int x, int y, int color, t_cub *cub);
 int		mouse_move_handler(int x, int y, t_cub *cub);
+void	move_bonus(t_play *player, t_cub *cub);
+void	move_left_right(t_play *player, t_cub *cub, int key, double speed);
+void	handle_movement_bonus(t_play *player, t_cub *cub);
 //movements
 void	put_pixel(int x, int y, int color, t_cub *cub);
 int		key_pressed(int keycode, t_play *player, t_cub *cub);
