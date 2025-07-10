@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 10:34:44 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/10 11:43:58 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ typedef struct	s_dda
 	double	step[2];
 	double	perp_dist;
 	double	line_height;
+	double	draw_start;
+	double	draw_end;
 	int		texture_index;
 	int		map_cord[2];
 	int		x;
@@ -162,7 +164,7 @@ void	clear_image(t_cub *cub);
 void	init_textures(t_cub *cub);
 int		find_texture_x(t_dda *data, t_play *player);
 double	get_line_height(t_dda *data, t_play *player);
-void	add_line_to_img(t_cub *cub, t_dda *data, int x);
+void	add_line_to_img(t_cub *cub, t_dda *data, int x, int tex_x);
 //raycasting
 void	raycasting(t_play *player, t_cub *cub);
 
