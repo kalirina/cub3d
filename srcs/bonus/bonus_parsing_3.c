@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_parsing_3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:40:28 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 11:40:29 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:20:21 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	is_closed_map(t_file *file)
 {

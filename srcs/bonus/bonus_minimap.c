@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 12:24:06 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 12:00:24 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:20:12 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	draw_pixel(int x, int y, int color, t_cub *cub)
 {

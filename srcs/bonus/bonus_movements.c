@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_movements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:55:51 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/09 18:47:54 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:20:18 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	safe_exit(void *param)
 {

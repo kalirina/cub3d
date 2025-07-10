@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics_2.c                                       :+:      :+:    :+:   */
+/*   bonus_graphics_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:06:53 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/10 16:52:50 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:53:51 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	load_texture(t_cub *cub, void *tmp, int i, int y)
 {
@@ -18,18 +18,15 @@ void	load_texture(t_cub *cub, void *tmp, int i, int y)
 	int		size_line;
 	int		endian;
 	int		x;
-	char	*data;	
+	char	*data;
 
 	data = mlx_get_data_addr(tmp, &bpp, &size_line, &endian);
 	while (y < TEXTURE_SIDE)
 	{
-		x = 0;
-		while (x < TEXTURE_SIDE)
-		{
+		x = -1;
+		while (++x < TEXTURE_SIDE)
 			cub->textures[i][y * TEXTURE_SIDE + x] = *(unsigned int *)
 				(data + y * size_line + x * (bpp / 8));
-			x++;
-		}
 		y++;
 	}
 	mlx_destroy_image(cub->mlx, tmp);
@@ -40,6 +37,10 @@ void	init_textures(t_cub *cub)
 	void	*tmp;
 	int		width;
 	int		height;
+
+	cub->textures = malloc(sizeof(unsigned int *) * 5);
+	for(int i = 0; i < 5; i++)
+		cub->textures[i] = malloc(sizeof(unsigned int) * TEXTURE_SIDE * TEXTURE_SIDE);
 
 	tmp = mlx_xpm_file_to_image(cub->mlx, cub->file.no_t, &width, &height);
 	if (!tmp)
@@ -57,6 +58,10 @@ void	init_textures(t_cub *cub)
 	if (!tmp)
 		return ;
 	load_texture(cub, tmp, 3, 0);
+	tmp = mlx_xpm_file_to_image(cub->mlx, "./textures/door.xpm", &width, &height);
+	if (!tmp)
+		return ;
+	load_texture(cub, tmp, 4, 0);
 }
 
 int	find_texture_x(t_dda *data, t_play *player)

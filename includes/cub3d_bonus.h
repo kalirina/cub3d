@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 16:08:35 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:54:59 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct	s_dda
 	int		x;
 	int		side;
 	char	wall_type;
+	bool	is_door;
 }	t_dda;
 
 typedef struct	s_play
@@ -133,7 +134,7 @@ typedef struct s_cub
 {
 	t_file			file;
 	t_play			player;
-	unsigned int	textures[4][TEXTURE_SIDE * TEXTURE_SIDE];
+	unsigned int	**textures;
 	void			*img;
 	void			*mlx;
 	void			*win;

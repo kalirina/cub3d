@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_init_mlx.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:54:15 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 12:31:00 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:49:13 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	render_game(t_cub *cub)
 {

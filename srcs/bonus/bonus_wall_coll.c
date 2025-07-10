@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_wall_coll.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:44:46 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/09 13:58:47 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:20:30 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	move_bonus(t_play *player, t_cub *cub)
 {

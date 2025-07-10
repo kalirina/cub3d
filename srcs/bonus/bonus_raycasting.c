@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   bonus_raycasting.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:47:58 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/10 17:29:41 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/10 13:44:43 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	check_side(t_dda *data)
 {
@@ -57,6 +57,11 @@ void	dda(t_cub *cub, t_dda *data)
 		}
 		if (cub->file.map[data->map_cord[1]][data->map_cord[0]] == '1')
 			hit = true;
+		if (cub->file.map[data->map_cord[1]][data->map_cord[0]] == 'D')
+		{
+			hit = true;
+			data->is_door = true;
+		}
 	}
 	check_side(data);
 }
@@ -109,6 +114,7 @@ void	raycasting(t_play *player, t_cub *cub)
 	x = 0;
 	while (x < WIDTH)
 	{
+		data.is_door = false;
 		data.cam_pos = ((2 * x) / (double) WIDTH) - 1;
 		data.ray_dir[0] = player->dir[0] + (player->cam[0] * data.cam_pos);
 		data.ray_dir[1] = player->dir[1] + (player->cam[1] * data.cam_pos);
