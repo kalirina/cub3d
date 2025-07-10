@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:12 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/04 14:55:27 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:39:25 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int	safe_exit(int data)
-{
-	exit(data);
-}
 
 int	main(int argc, char **argv)
 {

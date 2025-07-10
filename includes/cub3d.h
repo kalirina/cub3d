@@ -41,6 +41,10 @@
 # define MINIMAP_SIZE 330
 # define MINIMAP_BLOCK 30
 
+#ifndef BONUS
+# define BONUS 0
+#endif
+
 typedef struct s_col
 {
 	int	r;
@@ -55,6 +59,8 @@ typedef struct s_file
 	int		fd;
 	int		i;
 	int		player_found;
+	int		player_pos[2];
+	char	player_dir;
 	int		max_len;
 	int		start_map;
 	char	*line;
@@ -63,6 +69,8 @@ typedef struct s_file
 	char	*so_t;
 	char	*we_t;
 	char	*ea_t;
+	int		floor_color;
+	int		ceil_color;
 	t_col	floor;
 	t_col	ceil;
 }	t_file;
@@ -112,6 +120,7 @@ typedef struct	s_play
 	double	y;
 	double	dir[2];
 	double	cam[2];
+	double	move_speed;
 	bool	key_up;
 	bool	key_down;
 	bool	key_left;
@@ -148,6 +157,7 @@ int		is_closed_map(t_file *file);
 void	drain_gnl(t_file *file);
 int		init_file_struct(t_cub *cub);
 int		is_digit_string(char *str);
+void	find_player(t_cub *cub);
 //minilibx
 int		init_game(t_cub *cub);
 //cleaning
@@ -161,12 +171,16 @@ int		render_minimap(t_cub *cub);
 int		init_min_struct(t_cub *cub);
 void	clear_image_mini(t_cub *cub);
 void	draw_pixel(int x, int y, int color, t_cub *cub);
+int		mouse_move_handler(int x, int y, t_cub *cub);
+void	move_bonus(t_play *player, t_cub *cub);
+void	move_left_right(t_play *player, t_cub *cub, int key, double speed);
+void	handle_movement_bonus(t_play *player, t_cub *cub);
 //movements
 void	put_pixel(int x, int y, int color, t_cub *cub);
-int		key_pressed(int keycode, t_play *player, t_cub *cub);
-int		key_released(int keycode, t_play	*player);
+int		key_pressed(int keycode, void *param);
+int		key_released(int keycode, void *param);
 void	handle_movement(t_play *player);
-int		safe_exit(t_cub *cub, int data);
+int		safe_exit(void *param);
 void	clear_image(t_cub *cub);
 // int		render_square(t_cub *cub, int x, int y, int size, int color);
 //graphics

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movements.c                                        :+:      :+:    :+:   */
+/*   bonus_movements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/24 15:06:04 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/04 14:55:15 by enrmarti         ###   ########.fr       */
+/*   Created: 2025/07/09 16:55:51 by irkalini          #+#    #+#             */
+/*   Updated: 2025/07/09 18:47:54 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	safe_exit(void *param)
 	cub = (t_cub *)param;
 	if (cub->img)
 		mlx_destroy_image(cub->mlx, cub->img);
+	if (cub->min.img)
+		mlx_destroy_image(cub->mlx, cub->min.img);
 	if (cub->win)
 		mlx_destroy_window(cub->mlx, cub->win);
 	free_all(cub);
@@ -71,33 +73,6 @@ int	key_released(int keycode, void *param)
 	return (0);
 }
 
-void	move(t_play *player)
-{
-	double	speed;
-
-	speed = 0.05;
-	if (player->key_up)
-	{
-		player->x += player->dir[0] * speed;
-		player->y += player->dir[1] * speed;
-	}
-	if (player->key_down)
-	{
-		player->x -= player->dir[0] * speed;
-		player->y -= player->dir[1] * speed;
-	}
-	if (player->key_left)
-	{
-		player->x += player->dir[1] * speed;
-		player->y -= player->dir[0] * speed;
-	}
-	if (player->key_right)
-	{
-		player->x -= player->dir[1] * speed;
-		player->y += player->dir[0] * speed;
-	}
-}
-
 void	rotate(t_play *player)
 {
 	double	tmp_x;
@@ -123,8 +98,8 @@ void	rotate(t_play *player)
 	}
 }
 
-void	handle_movement(t_play *player)
+void	handle_movement_bonus(t_play *player, t_cub *cub)
 {
-	move(player);
+	move_bonus(player, cub);
 	rotate(player);
 }

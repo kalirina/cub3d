@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:18:21 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/30 13:37:26 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/04 14:59:09 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int	parsing(t_cub *cub, char *filename)
 		return (printf("Error\nToo many players\n"), 0);
 	if (!is_closed_map(file))
 		return (0);
+	file->floor_color = file->floor.r * 256 * 256 + file->floor.g * 256 \
+		+ file->floor.b;
+	file->ceil_color = file->ceil.r * 256 * 256 + file->ceil.g * 256 \
+		+ file->ceil.b;
 	return (1);
 }
 

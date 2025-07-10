@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_mlx.c                                         :+:      :+:    :+:   */
+/*   bonus_init_mlx.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/18 16:28:00 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 10:44:51 by enrmarti         ###   ########.fr       */
+/*   Created: 2025/07/09 16:54:15 by irkalini          #+#    #+#             */
+/*   Updated: 2025/07/10 12:03:16 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	render_game(t_cub *cub)
 {
-	handle_movement(&cub->player);
+	handle_movement_bonus(&cub->player, cub);
 	raycasting(&cub->player, cub);
+	render_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
+	mlx_put_image_to_window(cub->mlx, cub->win, cub->min.img, 1590, 0); //B
 	return (0);
 }
 
@@ -65,6 +67,7 @@ void	init_player(t_play *player, double x, double y, char direction)
 	player->key_left = false;
 	player->left_rotate = false;
 	player->right_rotate = false;
+	player->move_speed = 0.05;
 }
 
 int	init_game(t_cub *cub)
@@ -83,9 +86,13 @@ int	init_game(t_cub *cub)
 		return (free(cub->mlx), free(cub->win), 0);
 	cub->addr = mlx_get_data_addr(cub->img, &cub->bpp, &cub->line_len, \
 			&cub->endian);
-  init_textures(cub);
+	if (!init_min_struct(cub))
+		return (0);
 	mlx_hook(cub->win, 2, 1L << 0, key_pressed, cub);
 	mlx_hook(cub->win, 3, 1L << 1, key_released, cub);
+	mlx_mouse_hide(cub->mlx, cub->win);
+	mlx_mouse_move(cub->mlx, cub->win, WIDTH / 2, HEIGHT / 2);
+	mlx_hook(cub->win, 6, 1L<<6, mouse_move_handler, cub);
 	mlx_hook(cub->win, 17, 0, safe_exit, cub);
 	mlx_loop_hook(cub->mlx, render_game, cub);
 	mlx_loop(cub->mlx);

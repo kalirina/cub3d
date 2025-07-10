@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 12:24:06 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/04 12:35:32 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/10 12:00:24 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	draw_tile(t_cub *cub, int screen_x, int screen_y, char wall)
 			{
 				if (wall == '1')
 					draw_pixel(px, py, cub->min.wall_color, cub);
-				else
+				else if (wall != 'P')
 					draw_pixel(px, py, cub->min.space_color, cub);
 			}
 			x++;

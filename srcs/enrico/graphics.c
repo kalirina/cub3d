@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 16:32:03 by enrmarti          #+#    #+#             */
 /*   Updated: 2025/07/10 11:44:21 by enrmarti         ###   ########.fr       */
@@ -55,7 +55,7 @@ void	add_line_to_img(t_cub *cub, t_dda *data, int x, int tex_x)
 	step = 1.0 * TEXTURE_SIDE / data->line_height;
 	tex_pos = (data->draw_start - HEIGHT / 2 + data->line_height / 2) * step;
 	while (y < data->draw_start)
-		put_pixel(x, y++, 0xAAAAAA, cub);
+		put_pixel(x, y++, cub->file.ceil_color, cub);
 	while (y < data->draw_end)
 	{
 		tex_y = (int) tex_pos & (TEXTURE_SIDE - 1);
@@ -65,7 +65,7 @@ void	add_line_to_img(t_cub *cub, t_dda *data, int x, int tex_x)
 		put_pixel(x, y++, color, cub);
 	}
 	while (y < HEIGHT)
-		put_pixel(x, y++, 0xAAAAAA, cub);
+		put_pixel(x, y++, cub->file.floor_color, cub);
 }
 
 double	get_line_height(t_dda *data, t_play *player)
