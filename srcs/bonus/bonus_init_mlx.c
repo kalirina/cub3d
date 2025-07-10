@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:54:15 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 12:03:16 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/10 12:31:00 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	init_game(t_cub *cub)
 			&cub->endian);
 	if (!init_min_struct(cub))
 		return (0);
+	init_textures(cub);
 	mlx_hook(cub->win, 2, 1L << 0, key_pressed, cub);
 	mlx_hook(cub->win, 3, 1L << 1, key_released, cub);
 	mlx_mouse_hide(cub->mlx, cub->win);

@@ -6,7 +6,7 @@
 #    By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 12:37:33 by irkalini          #+#    #+#              #
-#    Updated: 2025/07/10 10:46:02 by irkalini         ###   ########.fr        #
+#    Updated: 2025/07/10 12:34:08 by irkalini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ BONUS =srcs/main.c srcs/parsing/parsing_1.c srcs/parsing/parsing_2.c \
 		srcs/clean.c srcs/bonus/bonus_init_mlx.c srcs/enrico/raycasting.c \
 		srcs/enrico/graphics.c srcs/bonus/bonus_movements.c \
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
+		srcs/enrico/graphics_2.c \
 		srcs/bonus/bonus_wall_coll.c srcs/bonus/bonus_minimap.c \
 		srcs/bonus/bonus_minimap_2.c srcs/bonus/bonus_mouse_rotate.c \
 
