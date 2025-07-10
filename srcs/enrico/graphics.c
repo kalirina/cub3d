@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 16:32:03 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/04 15:01:23 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/10 11:44:21 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,55 +42,52 @@ void	clear_image(t_cub *cub)
 	}
 }
 
-int	get_wall_color(t_dda *data)
+void	add_line_to_img(t_cub *cub, t_dda *data, int x, int tex_x)
 {
-	if (data->wall_type == 'N')
-		return (0xFF0000);
-	if (data->wall_type == 'S')
-		return (0xFFFF00);
-	if (data->wall_type == 'W')
-		return (0x00FF00);
-	if (data->wall_type == 'E')
-		return (0x0000FF);
-	return (0xAAAAAA);
-}
+	unsigned int	color;
+	double			step;
+	double			tex_pos;
+	int				tex_y;
+	int				y;
 
-void	add_line_to_img(t_cub *cub, t_dda *data, double line_height, int x)
-{
-	double	start;
-	double	end;
-	int		y;
-
-	start = HEIGHT / 2 - line_height / 2;
-	end = HEIGHT / 2 + line_height / 2;
-	if (start < 0)
-		start = 0;
-	if (end > HEIGHT)
-		end = HEIGHT;
 	y = 0;
-	while (y < start)
+	tex_x = find_texture_x(data, &cub->player);
+	step = 1.0 * TEXTURE_SIDE / data->line_height;
+	tex_pos = (data->draw_start - HEIGHT / 2 + data->line_height / 2) * step;
+	while (y < data->draw_start)
 		put_pixel(x, y++, cub->file.ceil_color, cub);
-	while (y < end)
-		put_pixel(x, y++, get_wall_color(data), cub);
+	while (y < data->draw_end)
+	{
+		tex_y = (int) tex_pos & (TEXTURE_SIDE - 1);
+		tex_pos += step;
+		color = cub->textures[data->texture_index]
+		[TEXTURE_SIDE * tex_y + tex_x];
+		put_pixel(x, y++, color, cub);
+	}
 	while (y < HEIGHT)
 		put_pixel(x, y++, cub->file.floor_color, cub);
 }
 
 double	get_line_height(t_dda *data, t_play *player)
 {
-	double	perp_dist;
-	int		line_height;
+	double	line_height;
 
 	if (data->ray_dir[0] == 0 && data->side == 0)
 		return (HEIGHT);
 	if (data->ray_dir[1] == 0 && data->side != 0)
 		return (HEIGHT);
 	if (data->side == 0)
-		perp_dist = (data->map_cord[0] - player->x
+		data->perp_dist = (data->map_cord[0] - player->x
 				+ (1 - data->step[0]) / 2) / data->ray_dir[0];
 	else
-		perp_dist = (data->map_cord[1] - player->y
+		data->perp_dist = (data->map_cord[1] - player->y
 				+ (1 - data->step[1]) / 2) / data->ray_dir[1];
-	line_height = (int)(HEIGHT / perp_dist);
+	line_height = HEIGHT / data->perp_dist;
+	data->draw_start = HEIGHT / 2 - data->line_height / 2;
+	data->draw_end = HEIGHT / 2 + data->line_height / 2;
+	if (data->draw_start < 0)
+		data->draw_start = 0;
+	if (data->draw_end > HEIGHT)
+		data->draw_end = HEIGHT;
 	return (line_height);
 }

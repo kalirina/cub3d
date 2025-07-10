@@ -14,8 +14,9 @@ NAME = cub3d
 
 SRCS = srcs/main.c srcs/parsing/parsing_1.c srcs/parsing/parsing_2.c \
 		srcs/parsing/parsing_3.c srcs/parsing/utils_parse.c\
-		srcs/clean.c srcs/init_mlx.c srcs/enrico/raycasting.c \
-		srcs/enrico/graphics.c srcs/enrico/movements.c \
+		srcs/clean.c srcs/init_mlx.c \
+		srcs/enrico/graphics.c srcs/enrico/graphics_2.c\
+		srcs/enrico/movements.c srcs/enrico/raycasting.c \
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 BONUS =srcs/main.c srcs/parsing/parsing_1.c srcs/parsing/parsing_2.c \

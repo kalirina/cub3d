@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/09 18:21:07 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/10 11:43:58 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define LEFT 65361
 # define RIGHT 65363
 # define ESC 65307
+
+# define TEXTURE_SIDE 128
 
 # define PI 3.14159265359
 # define FOV 66
@@ -101,6 +103,11 @@ typedef struct	s_dda
 	double	res[2];
 	double	side_dist[2];
 	double	step[2];
+	double	perp_dist;
+	double	line_height;
+	double	draw_start;
+	double	draw_end;
+	int		texture_index;
 	int		map_cord[2];
 	int		x;
 	int		side;
@@ -124,17 +131,17 @@ typedef struct	s_play
 
 typedef struct s_cub
 {
-	t_file	file;
-	t_play	player;
-	void	*img;
-	void	*mlx;
-	void	*win;
-	int		bpp;
-	int		line_len;
-	int		endian;
-	char	*addr;
-	int		bonus;
-	t_min	min;
+	t_file			file;
+	t_play			player;
+	unsigned int	textures[4][TEXTURE_SIDE * TEXTURE_SIDE];
+	void			*img;
+	void			*mlx;
+	void			*win;
+	int				bpp;
+	int				line_len;
+	int				endian;
+	char			*addr;
+	t_min			min;
 }	t_cub;
 
 //parsing
@@ -157,6 +164,7 @@ int		init_game(t_cub *cub);
 void	free_split(char **split);
 void	free_tokens(t_file *file, int i);
 void	free_file_struct(t_cub *cub);
+int		safe_exit(int data);
 void	free_all(t_cub *cub);
 //bonus
 int		render_minimap(t_cub *cub);
@@ -176,8 +184,10 @@ int		safe_exit(void *param);
 void	clear_image(t_cub *cub);
 // int		render_square(t_cub *cub, int x, int y, int size, int color);
 //graphics
+void	init_textures(t_cub *cub);
+int		find_texture_x(t_dda *data, t_play *player);
 double	get_line_height(t_dda *data, t_play *player);
-void	add_line_to_img(t_cub *cub, t_dda *data, double line_height, int x);
+void	add_line_to_img(t_cub *cub, t_dda *data, int x, int tex_x);
 //raycasting
 void	raycasting(t_play *player, t_cub *cub);
 

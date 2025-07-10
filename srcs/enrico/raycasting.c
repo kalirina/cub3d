@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:47:58 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/03 14:24:45 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/10 11:43:47 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,25 @@
 
 void	check_side(t_dda *data)
 {
-	if (data->side == 0)
+	if (data->side == 1 && data->ray_dir[1] > 0)
 	{
-		if (data->ray_dir[0] > 0)
-			data->wall_type = 'W';
-		else
-			data->wall_type = 'E';
+		data->wall_type = 'N';
+		data->texture_index = 0;
 	}
-	else
+	else if (data->side == 1 && data->ray_dir[1] < 0)
 	{
-		if (data->ray_dir[1] > 0)
-			data->wall_type = 'N';
-		else
-			data->wall_type = 'S';
+		data->wall_type = 'S';
+		data->texture_index = 1;
+	}
+	else if (data->side == 0 && data->ray_dir[0] > 0)
+	{
+		data->wall_type = 'W';
+		data->texture_index = 2;
+	}
+	else if (data->side == 0 && data->ray_dir[0] < 0)
+	{
+		data->wall_type = 'E';
+		data->texture_index = 3;
 	}
 }
 
@@ -108,8 +114,8 @@ void	raycasting(t_play *player, t_cub *cub)
 		data.ray_dir[1] = player->dir[1] + (player->cam[1] * data.cam_pos);
 		config_dda(player, &data);
 		dda(cub, &data);
-		line_height = get_line_height(&data, player);
-		add_line_to_img(cub, &data, line_height, x);
+		data.line_height = get_line_height(&data, player);
+		add_line_to_img(cub, &data, x, find_texture_x(&data, &cub->player));
 		x++;
 	}
 }
