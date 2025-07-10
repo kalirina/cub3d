@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+         #
+#    By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 12:37:33 by irkalini          #+#    #+#              #
 #    Updated: 2025/07/10 10:15:52 by enrmarti         ###   ########.fr        #
@@ -48,7 +48,7 @@ $(MLX_A):
 	$(MAKE) -C $(MLX_DIR)
 
 valgrind: all
-	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./cub3d test.cub
+	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./cub3d small.cub
 
 clean:
 	rm -f $(OBJS)

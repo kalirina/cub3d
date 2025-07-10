@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:06:04 by enrmarti          #+#    #+#             */
 /*   Updated: 2025/07/04 14:55:15 by enrmarti         ###   ########.fr       */
@@ -12,10 +12,23 @@
 
 #include "../../includes/cub3d.h"
 
-int	key_pressed(int keycode, t_play *player)
+
+int	safe_exit(t_cub *cub, int data)
+{
+	if (cub->img)
+		mlx_destroy_image(cub->mlx, cub->img);
+	if (cub->min.img)
+		mlx_destroy_image(cub->mlx, cub->min.img);
+	if (cub->win)
+		mlx_destroy_window(cub->mlx, cub->win);
+	free_all(cub);
+	exit(data);
+}
+
+int	key_pressed(int keycode, t_play *player, t_cub *cub)
 {
 	if (keycode == ESC)
-		safe_exit(1);
+		safe_exit(cub, 1);
 	if (keycode == W)
 		player->key_up = true;
 	else if (keycode == S)
