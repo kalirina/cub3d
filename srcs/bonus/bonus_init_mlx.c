@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:54:15 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/09 18:49:31 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/10 12:03:16 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int	init_game(t_cub *cub)
 	mlx_hook(cub->win, 2, 1L << 0, key_pressed, cub);
 	mlx_hook(cub->win, 3, 1L << 1, key_released, cub);
 	mlx_mouse_hide(cub->mlx, cub->win);
+	mlx_mouse_move(cub->mlx, cub->win, WIDTH / 2, HEIGHT / 2);
 	mlx_hook(cub->win, 6, 1L<<6, mouse_move_handler, cub);
 	mlx_hook(cub->win, 17, 0, safe_exit, cub);
 	mlx_loop_hook(cub->mlx, render_game, cub);

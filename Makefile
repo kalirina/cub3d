@@ -6,7 +6,7 @@
 #    By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 12:37:33 by irkalini          #+#    #+#              #
-#    Updated: 2025/07/09 17:09:26 by irkalini         ###   ########.fr        #
+#    Updated: 2025/07/10 10:46:02 by irkalini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS = srcs/main.c srcs/parsing/parsing_1.c srcs/parsing/parsing_2.c \
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 BONUS =srcs/main.c srcs/parsing/parsing_1.c srcs/parsing/parsing_2.c \
-		srcs/parsing/parsing_3.c srcs/parsing/utils_parse.c\
+		srcs/bonus/bonus_parsing_3.c srcs/parsing/utils_parse.c\
 		srcs/clean.c srcs/bonus/bonus_init_mlx.c srcs/enrico/raycasting.c \
 		srcs/enrico/graphics.c srcs/bonus/bonus_movements.c \
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
@@ -53,7 +53,7 @@ $(LIBFT_A):
 $(MLX_A):
 	$(MAKE) -C $(MLX_DIR)
 
-bonus: $(BONUS_OBJS)
+bonus: $(LIBFT_A) $(MLX_A) $(BONUS_OBJS)
 	$(CC) $(FLAGS) -o $(NAME) $(BONUS_OBJS) $(MLX_FLAGS) $(INCLUDES) $(LIBFT_A)
 
 clean:
