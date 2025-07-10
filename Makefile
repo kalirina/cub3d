@@ -6,7 +6,7 @@
 #    By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 12:37:33 by irkalini          #+#    #+#              #
-#    Updated: 2025/07/04 12:51:02 by irkalini         ###   ########.fr        #
+#    Updated: 2025/07/10 10:15:52 by enrmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,9 @@ NAME = cub3d
 SRCS = srcs/main.c srcs/parsing/parsing_1.c srcs/parsing/parsing_2.c \
 		srcs/parsing/parsing_3.c srcs/parsing/utils_parse.c\
 		srcs/clean.c srcs/init_mlx.c \
-		srcs/bonus/bonus_minimap.c srcs/bonus/bonus_minimap_2.c \
-		srcs/enrico/graphics.c srcs/enrico/movements.c \
+		srcs/bonus/bonus_minimap.c \
+		srcs/enrico/graphics.c srcs/enrico/graphics_2.c\
+		srcs/enrico/movements.c \
 		srcs/enrico/raycasting.c \
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 

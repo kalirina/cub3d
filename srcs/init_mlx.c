@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 16:28:00 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/04 12:52:59 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/10 10:44:51 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	init_game(t_cub *cub)
 		return (free(cub->mlx), free(cub->win), 0);
 	cub->addr = mlx_get_data_addr(cub->img, &cub->bpp, &cub->line_len, \
 			&cub->endian);
+	init_textures(cub);
 	if (!init_min_struct(cub))
 		return (0);
 	mlx_hook(cub->win, 2, 1L << 0, key_pressed, &cub->player);
