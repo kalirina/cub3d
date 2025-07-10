@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:50:28 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/04 12:35:48 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/10 13:25:29 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	init_min_struct(t_cub *cub)
 	min->wall_color = 0x00333333;
 	min->space_color = 0x00CCCCCC;
 	min->player_color = 0xFF0000;
+	min->door_color = 0x00000099;
 	return (1);
 }
 

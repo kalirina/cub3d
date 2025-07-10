@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 12:32:04 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/10 13:24:36 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_min
 	int		wall_color;
 	int		space_color;
 	int		player_color;
+	int		door_color;
 }	t_min;
 
 typedef struct	s_dda

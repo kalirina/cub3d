@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 12:24:06 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 12:00:24 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/10 13:28:25 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	draw_tile(t_cub *cub, int screen_x, int screen_y, char wall)
 			{
 				if (wall == '1')
 					draw_pixel(px, py, cub->min.wall_color, cub);
+				else if (wall == 'D')
+					draw_pixel(px, py, cub->min.door_color, cub);
 				else if (wall != 'P')
 					draw_pixel(px, py, cub->min.space_color, cub);
 			}
