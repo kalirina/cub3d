@@ -3,27 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:06:04 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/04 14:55:15 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 12:31:10 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	safe_exit(void *param)
-{
-	t_cub	*cub;
-
-	cub = (t_cub *)param;
-	if (cub->img)
-		mlx_destroy_image(cub->mlx, cub->img);
-	if (cub->win)
-		mlx_destroy_window(cub->mlx, cub->win);
-	free_all(cub);
-	exit(0);
-}
 
 int	key_pressed(int keycode, void *param)
 {
@@ -31,7 +19,7 @@ int	key_pressed(int keycode, void *param)
 	t_play	*player;
 
 	cub = (t_cub *)param;
-	player = &cub->player;
+	player = cub->player;
 	if (keycode == ESC)
 		safe_exit(cub);
 	if (keycode == W)
@@ -55,7 +43,7 @@ int	key_released(int keycode, void *param)
 	t_play	*player;
 
 	cub = (t_cub *)param;
-	player = &cub->player;
+	player = cub->player;
 	if (keycode == W)
 		player->key_up = false;
 	else if (keycode == S)

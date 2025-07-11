@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_movements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:55:51 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/09 18:47:54 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:03:23 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
-
-int	safe_exit(void *param)
-{
-	t_cub	*cub;
-
-	cub = (t_cub *)param;
-	if (cub->img)
-		mlx_destroy_image(cub->mlx, cub->img);
-	if (cub->min.img)
-		mlx_destroy_image(cub->mlx, cub->min.img);
-	if (cub->win)
-		mlx_destroy_window(cub->mlx, cub->win);
-	free_all(cub);
-	exit(0);
-}
+#include "../../includes/cub3d_bonus.h"
 
 int	key_pressed(int keycode, void *param)
 {
@@ -33,7 +18,9 @@ int	key_pressed(int keycode, void *param)
 	t_play	*player;
 
 	cub = (t_cub *)param;
-	player = &cub->player;
+	player = cub->player;
+	if (keycode == E)
+		open_door(cub);
 	if (keycode == ESC)
 		safe_exit(cub);
 	if (keycode == W)
@@ -57,7 +44,7 @@ int	key_released(int keycode, void *param)
 	t_play	*player;
 
 	cub = (t_cub *)param;
-	player = &cub->player;
+	player = cub->player;
 	if (keycode == W)
 		player->key_up = false;
 	else if (keycode == S)

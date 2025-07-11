@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+         #
+#    By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 12:37:33 by irkalini          #+#    #+#              #
-#    Updated: 2025/07/10 12:34:08 by irkalini         ###   ########.fr        #
+#    Updated: 2025/07/11 15:55:42 by enrmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,17 +14,17 @@ NAME = cub3d
 
 SRCS = srcs/main.c srcs/parsing/parsing_1.c srcs/parsing/parsing_2.c \
 		srcs/parsing/parsing_3.c srcs/parsing/utils_parse.c\
-		srcs/clean.c srcs/init_mlx.c \
+		srcs/clean.c srcs/init_mlx.c srcs/enrico/utils.c\
 		srcs/enrico/graphics.c srcs/enrico/graphics_2.c\
-		srcs/enrico/movements.c srcs/enrico/raycasting.c \
+		srcs/enrico/movements.c srcs/enrico/raycasting.c\
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 BONUS =srcs/main.c srcs/parsing/parsing_1.c srcs/parsing/parsing_2.c \
 		srcs/bonus/bonus_parsing_3.c srcs/parsing/utils_parse.c\
-		srcs/clean.c srcs/bonus/bonus_init_mlx.c srcs/enrico/raycasting.c \
-		srcs/enrico/graphics.c srcs/bonus/bonus_movements.c \
+		srcs/bonus/bonus_clean.c srcs/bonus/bonus_init_mlx.c srcs/bonus/bonus_raycasting.c \
+		srcs/bonus/bonus_graphics.c srcs/bonus/bonus_movements.c \
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-		srcs/enrico/graphics_2.c \
+		srcs/bonus/bonus_graphics_2.c srcs/bonus/bonus_door.c \
 		srcs/bonus/bonus_wall_coll.c srcs/bonus/bonus_minimap.c \
 		srcs/bonus/bonus_minimap_2.c srcs/bonus/bonus_mouse_rotate.c \
 
@@ -69,3 +69,5 @@ fclean: clean
 	rm -f $(MLX_A)
 
 re: fclean all
+
+reb: fclean bonus

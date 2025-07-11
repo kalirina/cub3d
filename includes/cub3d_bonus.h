@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 15:24:47 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:03:42 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define A 97
 # define S 115
 # define D 100
+# define E 101
 # define LEFT 65361
 # define RIGHT 65363
 # define ESC 65307
@@ -111,6 +112,7 @@ typedef struct	s_dda
 	int		x;
 	int		side;
 	char	wall_type;
+	bool	is_door;
 }	t_dda;
 
 typedef struct	s_play
@@ -159,13 +161,13 @@ int		is_digit_string(char *str);
 void	find_player(t_cub *cub);
 //minilibx
 int		init_game(t_cub *cub);
-
 //cleaning
 void	free_split(char **split);
 void	free_tokens(t_file *file, int i);
 void	free_file_struct(t_cub *cub);
 void	free_all(t_cub *cub);
 //bonus
+void	open_door(t_cub *cub);
 int		render_minimap(t_cub *cub);
 int		init_min_struct(t_cub *cub);
 void	clear_image_mini(t_cub *cub);
@@ -189,6 +191,5 @@ double	get_line_height(t_dda *data, t_play *player);
 void	add_line_to_img(t_cub *cub, t_dda *data, int x, int tex_x);
 //raycasting
 void	raycasting(t_play *player, t_cub *cub);
-void	*init_dda(t_dda *t);
 
 #endif
