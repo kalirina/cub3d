@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 17:54:59 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 12:56:31 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define A 97
 # define S 115
 # define D 100
+# define E 101
 # define LEFT 65361
 # define RIGHT 65363
 # define ESC 65307
@@ -100,7 +101,6 @@ typedef struct	s_dda
 	double	cam_pos;
 	double	delta[2];
 	double	ray_dir[2];
-	double	res[2];
 	double	side_dist[2];
 	double	step[2];
 	double	perp_dist;

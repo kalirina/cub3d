@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 16:08:35 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 11:37:55 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ typedef struct	s_dda
 	double	cam_pos;
 	double	delta[2];
 	double	ray_dir[2];
-	double	res[2];
 	double	side_dist[2];
 	double	step[2];
 	double	perp_dist;
@@ -132,7 +131,7 @@ typedef struct	s_play
 typedef struct s_cub
 {
 	t_file			file;
-	t_play			player;
+	t_play			*player;
 	unsigned int	textures[4][TEXTURE_SIDE * TEXTURE_SIDE];
 	void			*img;
 	void			*mlx;
@@ -160,6 +159,7 @@ int		is_digit_string(char *str);
 void	find_player(t_cub *cub);
 //minilibx
 int		init_game(t_cub *cub);
+
 //cleaning
 void	free_split(char **split);
 void	free_tokens(t_file *file, int i);
@@ -189,5 +189,6 @@ double	get_line_height(t_dda *data, t_play *player);
 void	add_line_to_img(t_cub *cub, t_dda *data, int x, int tex_x);
 //raycasting
 void	raycasting(t_play *player, t_cub *cub);
+void	*init_dda(t_dda *t);
 
 #endif

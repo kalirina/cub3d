@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:47:58 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/10 17:29:41 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 11:42:16 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	raycasting(t_play *player, t_cub *cub)
 	int		x;
 	double	line_height;
 
+	init_dda(&data);
 	x = 0;
 	while (x < WIDTH)
 	{
@@ -115,7 +116,7 @@ void	raycasting(t_play *player, t_cub *cub)
 		config_dda(player, &data);
 		dda(cub, &data);
 		data.line_height = get_line_height(&data, player);
-		add_line_to_img(cub, &data, x, find_texture_x(&data, &cub->player));
+		add_line_to_img(cub, &data, x, find_texture_x(&data, cub->player));
 		x++;
 	}
 }

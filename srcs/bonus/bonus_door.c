@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 13:09:51 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/10 17:19:51 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 12:59:50 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ bool	short_dda(t_cub *cub, t_open *op)
 			op->side_dist[1] += op->delta[1];
 			op->map_cord[1] += (int) op->step[1];
 		}
-		if (op->side_dist[0] > 3 || op->side_dist[1] > 3)
+		if (op->side_dist[0] > 4 || op->side_dist[1] > 4)
 			return (false);
 		if (cub->file.map[op->map_cord[1]][op->map_cord[0]] == 'D')
 			return (true);
@@ -86,8 +86,6 @@ void	open_door(t_cub *cub)
 	config_opener(cub, &op);
 	if (short_dda(cub, &op))
 	{
-		printf("DOOOOOOOOR!\n");
+		
 	}
-	else
-		printf("NO\n");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 16:28:00 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 12:30:39 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/11 13:12:34 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	render_game(t_cub *cub)
 {
-	handle_movement(&cub->player);
-	raycasting(&cub->player, cub);
+	handle_movement(cub->player);
+	raycasting(cub->player, cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	return (0);
 }
@@ -56,6 +56,7 @@ void	init_vectors(t_play *player, char direction)
 
 void	init_player(t_play *player, double x, double y, char direction)
 {
+	
 	player->x = x;
 	player->y = y;
 	init_vectors(player, direction);
@@ -65,12 +66,14 @@ void	init_player(t_play *player, double x, double y, char direction)
 	player->key_left = false;
 	player->left_rotate = false;
 	player->right_rotate = false;
+	// player->move_speed = 0.05;
 }
 
 int	init_game(t_cub *cub)
 {
+	cub->player = malloc(sizeof(t_play));
 	find_player(cub);
-	init_player(&cub->player, cub->file.player_pos[0] + 0.5, \
+	init_player(cub->player, cub->file.player_pos[0] + 0.5, \
 		cub->file.player_pos[1] + 0.5, cub->file.player_dir);
 	cub->mlx = mlx_init();
 	if (!cub->mlx)
