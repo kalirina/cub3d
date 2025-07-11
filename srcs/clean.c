@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:52:10 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/04 12:46:39 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:15:15 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,17 @@ void	free_file_struct(t_cub *cub)
 void	free_all(t_cub *cub)
 {
 	free_file_struct(cub);
-	//free structures
+}
+
+int	safe_exit(void *param)
+{
+	t_cub	*cub;
+
+	cub = (t_cub *)param;
+	if (cub->img)
+		mlx_destroy_image(cub->mlx, cub->img);
+	if (cub->win)
+		mlx_destroy_window(cub->mlx, cub->win);
+	free_all(cub);
+	exit(0);
 }

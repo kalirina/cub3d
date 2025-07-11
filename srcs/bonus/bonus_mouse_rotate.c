@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 12:14:49 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/09 12:54:15 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/11 12:26:41 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,14 @@ int	mouse_move_handler(int x, int y, t_cub *cub)
 {
 	t_play	*player;
 	int		delta_x;
-	double	rot_speed;
 	double	angle;
 	double	old_x;
 
 	player = &cub->player;
-	rot_speed = 0.0025;
 	delta_x = x - (WIDTH / 2);
 	if (delta_x != 0)
 	{
-		angle = delta_x * rot_speed;
+		angle = delta_x * ROT_MOUS_SPEED;
 		old_x = player->dir[0];
 		player->dir[0] = player->dir[0] * cos(angle)
 			- player->dir[1] * sin(angle);

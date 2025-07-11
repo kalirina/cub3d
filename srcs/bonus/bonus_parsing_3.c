@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:40:28 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 11:40:29 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/11 14:35:27 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	is_closed_map(t_file *file)
 		{
 			if (file->map[i][j] == '0' || file->map[i][j] == 'N'\
 				|| file->map[i][j] == 'S' || file->map[i][j] == 'E'\
-				|| file->map[i][j] == 'W' || file->map[i][j] == 'D') //BONUS
+				|| file->map[i][j] == 'W' || file->map[i][j] == 'D')
 			{
 				if (i == 0 || i == file->i || j == 0 || j == file->max_len - 1)
 					return (printf("Error\nMap is not closed\n"), 0);
@@ -49,7 +49,7 @@ int	is_valid_map_line(char *s)
 	while (s[i] && s[i] != '\n')
 	{
 		if (s[i] != ' ' && s[i] != '1' && s[i] != '0' && s[i] != 'N' \
-			&& s[i] != 'S' && s[i] != 'E' && s[i] != 'W' && s[i] != 'D') //BONUS
+			&& s[i] != 'S' && s[i] != 'E' && s[i] != 'W' && s[i] != 'D')
 			return (0);
 		i++;
 	}

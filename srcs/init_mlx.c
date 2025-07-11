@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 16:28:00 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 12:30:39 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/11 13:08:05 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	render_game(t_cub *cub)
 {
-	handle_movement(&cub->player);
+	handle_movement(&cub->player, cub);
 	raycasting(&cub->player, cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	return (0);
