@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:12 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 12:15:32 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:46:26 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	if (!init_file_struct(cub))
 		return (free_all(cub), printf("Error\nInitialisation problem\n"), 1);
 	if (!parsing(cub, argv[1]))
-		return (free_file_struct(cub), 1);
+		return (free_all(cub), 1);
 	if (!init_game(cub))
 		return (1);
 	free_all(cub);

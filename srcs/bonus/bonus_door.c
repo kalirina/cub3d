@@ -6,86 +6,61 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 13:09:51 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/11 12:59:50 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:55:04 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d_bonus.h"
 
-typedef struct s_opener
+bool	is_door(char c)
 {
-	double	delta[2];
-	double	ray_dir[2];
-	double	side_dist[2];
-	double	step[2];
-	int		map_cord[2];
-}	t_open;
-
-void	find_door_step(t_play *player, t_open *op)
-{
-	if (op->ray_dir[0] < 0)
-	{
-		op->step[0] = -1;
-		op->side_dist[0] = (player->x - op->map_cord[0]) * op->delta[0];
-	}
-	else
-	{
-		op->step[0] = 1;
-		op->side_dist[0] = (op->map_cord[0] + 1.0
-				- player->x) * op->delta[0];
-	}
-	if (op->ray_dir[1] < 0)
-	{
-		op->step[1] = -1;
-		op->side_dist[1] = (player->y - op->map_cord[1]) * op->delta[1];
-	}
-	else
-	{
-		op->step[1] = 1;
-		op->side_dist[1] = (op->map_cord[1] + 1.0
-				- player->y) * op->delta[1];
-	}
+	if (c == 'D' || c == 'O')
+		return (true);
+	return (false);
 }
 
-void	config_opener(t_cub *cub, t_open *op)
+void	change_door_status(char *c)
 {
-	op->ray_dir[0] = cub->player.dir[0];
-	op->ray_dir[1] = cub->player.dir[1];
-	op->map_cord[0] = (int) floor(cub->player.x);
-	op->map_cord[1] = (int) floor(cub->player.y);
-	op->delta[0] = fabs(1 / op->ray_dir[0]);
-	op->delta[1] = fabs(1 / op->ray_dir[1]);
-	find_door_step(&cub->player, op);
+	if (*c == 'D')
+		*c = 'O';
+	else if (*c == 'O')
+		*c = 'D';
 }
 
-bool	short_dda(t_cub *cub, t_open *op)
+void	is_door_near(t_cub *cub, int door_y, int door_x)
 {
-	while (1)
+	int	px;
+	int	py;
+	
+	px = cub->player->x;
+	py = cub->player->y;
+	if (px == door_x)
 	{
-		if (op->side_dist[0] < op->side_dist[1])
-		{
-			op->side_dist[0] += op->delta[0];
-			op->map_cord[0] += (int) op->step[0];
-		}
-		else
-		{
-			op->side_dist[1] += op->delta[1];
-			op->map_cord[1] += (int) op->step[1];
-		}
-		if (op->side_dist[0] > 4 || op->side_dist[1] > 4)
-			return (false);
-		if (cub->file.map[op->map_cord[1]][op->map_cord[0]] == 'D')
-			return (true);
+		if (py == door_y + 1 || py == door_y - 1)
+			change_door_status(&cub->file.map[door_y][door_x]);
+	}
+	if (py == door_y)
+	{
+		if (px == door_x + 1 || px == door_x - 1)
+			change_door_status(&cub->file.map[door_y][door_x]);
 	}
 }
 
 void	open_door(t_cub *cub)
 {
-	t_open op;
+	int	x;
+	int	y;
 	
-	config_opener(cub, &op);
-	if (short_dda(cub, &op))
+	y = 0;
+	while (cub->file.map[y])
 	{
-		
+		x = 0;
+		while (cub->file.map[y][x])
+		{
+			if (is_door(cub->file.map[y][x]))
+				is_door_near(cub, y, x);
+			x++;
+		}
+		y++;
 	}
 }

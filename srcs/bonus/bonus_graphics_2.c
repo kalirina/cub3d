@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:06:53 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/10 17:53:51 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 15:28:11 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	init_textures(t_cub *cub)
 	cub->textures = malloc(sizeof(unsigned int *) * 5);
 	for(int i = 0; i < 5; i++)
 		cub->textures[i] = malloc(sizeof(unsigned int) * TEXTURE_SIDE * TEXTURE_SIDE);
-
 	tmp = mlx_xpm_file_to_image(cub->mlx, cub->file.no_t, &width, &height);
 	if (!tmp)
 		return ;

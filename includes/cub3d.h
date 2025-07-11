@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 11:37:55 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 15:24:47 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ typedef struct s_cub
 {
 	t_file			file;
 	t_play			*player;
-	unsigned int	textures[4][TEXTURE_SIDE * TEXTURE_SIDE];
+	unsigned int	**textures;
 	void			*img;
 	void			*mlx;
 	void			*win;

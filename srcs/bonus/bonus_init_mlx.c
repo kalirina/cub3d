@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:54:15 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 17:49:13 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:03:57 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	render_game(t_cub *cub)
 {
-	handle_movement_bonus(&cub->player, cub);
-	raycasting(&cub->player, cub);
+	handle_movement_bonus(cub->player, cub);
+	raycasting(cub->player, cub);
 	render_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->min.img, 1590, 0); //B
@@ -72,8 +72,9 @@ void	init_player(t_play *player, double x, double y, char direction)
 
 int	init_game(t_cub *cub)
 {
+	cub->player = malloc(sizeof(t_play));
 	find_player(cub);
-	init_player(&cub->player, cub->file.player_pos[0] + 0.5, \
+	init_player(cub->player, cub->file.player_pos[0] + 0.5, \
 		cub->file.player_pos[1] + 0.5, cub->file.player_dir);
 	cub->mlx = mlx_init();
 	if (!cub->mlx)

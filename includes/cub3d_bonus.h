@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 12:56:31 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:03:42 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ typedef struct	s_play
 typedef struct s_cub
 {
 	t_file			file;
-	t_play			player;
+	t_play			*player;
 	unsigned int	**textures;
 	void			*img;
 	void			*mlx;
@@ -167,6 +167,7 @@ void	free_tokens(t_file *file, int i);
 void	free_file_struct(t_cub *cub);
 void	free_all(t_cub *cub);
 //bonus
+void	open_door(t_cub *cub);
 int		render_minimap(t_cub *cub);
 int		init_min_struct(t_cub *cub);
 void	clear_image_mini(t_cub *cub);

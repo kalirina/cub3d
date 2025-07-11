@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 12:14:49 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 10:54:49 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:03:11 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	mouse_move_handler(int x, int y, t_cub *cub)
 	double	angle;
 	double	old_x;
 
-	player = &cub->player;
+	player = cub->player;
 	rot_speed = 0.0006;
 	delta_x = x - (WIDTH / 2);
 	if (delta_x != 0)

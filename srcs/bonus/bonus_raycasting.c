@@ -12,7 +12,7 @@
 
 #include "../../includes/cub3d_bonus.h"
 
-void	check_side(t_dda *data)
+void	check_side(t_cub *cub, t_dda *data)
 {
 	if (data->side == 1 && data->ray_dir[1] > 0)
 	{
@@ -63,7 +63,7 @@ void	dda(t_cub *cub, t_dda *data)
 			data->is_door = true;
 		}
 	}
-	check_side(data);
+	check_side(cub, data);
 }
 
 void	find_step(t_play *player, t_dda *data)
@@ -121,7 +121,7 @@ void	raycasting(t_play *player, t_cub *cub)
 		config_dda(player, &data);
 		dda(cub, &data);
 		data.line_height = get_line_height(&data, player);
-		add_line_to_img(cub, &data, x, find_texture_x(&data, &cub->player));
+		add_line_to_img(cub, &data, x, find_texture_x(&data, cub->player));
 		x++;
 	}
 }

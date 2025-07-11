@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 12:24:06 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 17:20:12 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:55:29 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ int	render_minimap(t_cub *cub)
 	double	offset_y;
 
 	clear_image_mini(cub);
-	offset_x = cub->player.x - (MINIMAP_SIZE / (2.0 * cub->min.scale));
-	offset_y = cub->player.y - (MINIMAP_SIZE / (2.0 * cub->min.scale));
+	offset_x = cub->player->x - (MINIMAP_SIZE / (2.0 * cub->min.scale));
+	offset_y = cub->player->y - (MINIMAP_SIZE / (2.0 * cub->min.scale));
 	draw_minimap(cub, offset_x, offset_y);
 	draw_square(cub, MINIMAP_SIZE / 2 - 3, MINIMAP_SIZE / 2 - 3, 6);
 	return (1);
