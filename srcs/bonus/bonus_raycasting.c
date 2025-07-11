@@ -111,6 +111,7 @@ void	raycasting(t_play *player, t_cub *cub)
 	int		x;
 	double	line_height;
 
+	init_dda(&data);
 	x = 0;
 	while (x < WIDTH)
 	{

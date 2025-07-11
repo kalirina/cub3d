@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 16:28:00 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 13:12:34 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 19:00:11 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	init_player(t_play *player, double x, double y, char direction)
 	player->key_left = false;
 	player->left_rotate = false;
 	player->right_rotate = false;
-	// player->move_speed = 0.05;
+	player->move_speed = 0.05;
 }
 
 int	init_game(t_cub *cub)

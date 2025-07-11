@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 10:59:10 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/11 11:11:20 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 18:58:32 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,4 @@ void	*init_dda(t_dda *t)
 		t->step[i] = 0;
 		t->map_cord[i] = 0;
 	}
-	return (&t);
 }

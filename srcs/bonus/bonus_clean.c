@@ -6,11 +6,11 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:52:10 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 15:56:01 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 18:47:12 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	free_split(char **split)
 {
@@ -69,6 +69,13 @@ void	free_all(t_cub *cub)
 			free(cub->textures[i++]);
 		free(cub->textures);
 	}	
+	if (cub->n_doors != 0)
+	{
+		i = 0;
+		while (i < cub->n_doors)
+			free(cub->doors[i++]);
+		free(cub->doors);
+	}
 	free(cub);
 }
 
