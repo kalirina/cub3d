@@ -3,23 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_mouse_rotate.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 12:14:49 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 17:03:11 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:54:52 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d_bonus.h"
 
-int	mouse_move_handler(int x, int y, t_cub *cub)
+int	mouse_move_handler(int x, int y, void *param)
 {
+	t_cub	*cub;
 	t_play	*player;
 	int		delta_x;
 	double	angle;
 	double	old_x;
 
-	player = &cub->player;
+	cub = (t_cub *)param;
+	player = cub->player;
 	delta_x = x - (WIDTH / 2);
 	if (delta_x != 0)
 	{

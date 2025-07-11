@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:12 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 16:46:26 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 18:06:48 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		return (1);
 	cub = malloc(sizeof(t_cub));
 	if (!cub)
-		return (-1);
+		return (1);
 	if (!init_file_struct(cub))
 		return (free_all(cub), printf("Error\nInitialisation problem\n"), 1);
 	if (!parsing(cub, argv[1]))

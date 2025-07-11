@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_door.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 13:09:51 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/11 16:55:04 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 18:00:26 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	is_door_near(t_cub *cub, int door_y, int door_x)
 {
 	int	px;
 	int	py;
-	
+
 	px = cub->player->x;
 	py = cub->player->y;
 	if (px == door_x)
@@ -50,7 +50,7 @@ void	open_door(t_cub *cub)
 {
 	int	x;
 	int	y;
-	
+
 	y = 0;
 	while (cub->file.map[y])
 	{

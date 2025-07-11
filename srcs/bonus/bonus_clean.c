@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_clean.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:52:10 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 15:56:01 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:44:56 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	free_split(char **split)
 {
@@ -68,7 +68,7 @@ void	free_all(t_cub *cub)
 		while (i < 5)
 			free(cub->textures[i++]);
 		free(cub->textures);
-	}	
+	}
 	free(cub);
 }
 

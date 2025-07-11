@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+         #
+#    By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 12:37:33 by irkalini          #+#    #+#              #
-#    Updated: 2025/07/11 15:55:42 by enrmarti         ###   ########.fr        #
+#    Updated: 2025/07/11 17:36:09 by irkalini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCS = srcs/main.c srcs/parsing/parsing_1.c srcs/parsing/parsing_2.c \
 		srcs/clean.c srcs/init_mlx.c srcs/enrico/utils.c\
 		srcs/enrico/graphics.c srcs/enrico/graphics_2.c\
 		srcs/enrico/movements.c srcs/enrico/raycasting.c\
+		srcs/enrico/movements_2.c \
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 BONUS =srcs/main.c srcs/parsing/parsing_1.c srcs/parsing/parsing_2.c \

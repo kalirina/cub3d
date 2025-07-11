@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 16:28:00 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 13:12:34 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:39:54 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	render_game(t_cub *cub)
 {
-	handle_movement(&cub->player, cub);
-	raycasting(&cub->player, cub);
+	handle_movement(cub->player, cub);
+	raycasting(cub->player, cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	return (0);
 }
@@ -56,7 +56,7 @@ void	init_vectors(t_play *player, char direction)
 
 void	init_player(t_play *player, double x, double y, char direction)
 {
-	
+
 	player->x = x;
 	player->y = y;
 	init_vectors(player, direction);
