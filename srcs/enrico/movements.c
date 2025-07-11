@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:06:04 by enrmarti          #+#    #+#             */
 /*   Updated: 2025/07/11 17:15:42 by irkalini         ###   ########.fr       */
@@ -18,7 +18,7 @@ int	key_pressed(int keycode, void *param)
 	t_play	*player;
 
 	cub = (t_cub *)param;
-	player = &cub->player;
+	player = cub->player;
 	if (keycode == ESC)
 		safe_exit(cub);
 	if (keycode == W)
@@ -42,7 +42,7 @@ int	key_released(int keycode, void *param)
 	t_play	*player;
 
 	cub = (t_cub *)param;
-	player = &cub->player;
+	player = cub->player;
 	if (keycode == W)
 		player->key_up = false;
 	else if (keycode == S)

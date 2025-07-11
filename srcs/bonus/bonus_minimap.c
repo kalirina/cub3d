@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 12:24:06 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/10 13:28:25 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:55:29 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	draw_pixel(int x, int y, int color, t_cub *cub)
 {
@@ -104,8 +104,8 @@ int	render_minimap(t_cub *cub)
 	double	offset_y;
 
 	clear_image_mini(cub);
-	offset_x = cub->player.x - (MINIMAP_SIZE / (2.0 * cub->min.scale));
-	offset_y = cub->player.y - (MINIMAP_SIZE / (2.0 * cub->min.scale));
+	offset_x = cub->player->x - (MINIMAP_SIZE / (2.0 * cub->min.scale));
+	offset_y = cub->player->y - (MINIMAP_SIZE / (2.0 * cub->min.scale));
 	draw_minimap(cub, offset_x, offset_y);
 	draw_square(cub, MINIMAP_SIZE / 2 - 3, MINIMAP_SIZE / 2 - 3, 6);
 	return (1);

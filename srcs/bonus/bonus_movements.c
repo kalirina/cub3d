@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_movements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:55:51 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 17:17:58 by irkalini         ###   ########.fr       */
+
+/*   Updated: 2025/07/11 17:03:23 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	key_pressed(int keycode, void *param)
 {
@@ -18,7 +19,9 @@ int	key_pressed(int keycode, void *param)
 	t_play	*player;
 
 	cub = (t_cub *)param;
-	player = &cub->player;
+	player = cub->player;
+	if (keycode == E)
+		open_door(cub);
 	if (keycode == ESC)
 		safe_exit(cub);
 	if (keycode == W)
@@ -42,7 +45,7 @@ int	key_released(int keycode, void *param)
 	t_play	*player;
 
 	cub = (t_cub *)param;
-	player = &cub->player;
+	player = cub->player;
 	if (keycode == W)
 		player->key_up = false;
 	else if (keycode == S)

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_init_mlx.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:54:15 by irkalini          #+#    #+#             */
 /*   Updated: 2025/07/11 17:12:04 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	render_game(t_cub *cub)
 {
-	handle_movement_bonus(&cub->player, cub);
-	raycasting(&cub->player, cub);
+	handle_movement_bonus(cub->player, cub);
+	raycasting(cub->player, cub);
 	render_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->min.img, 1590, 0);
@@ -72,8 +72,9 @@ void	init_player(t_play *player, double x, double y, char direction)
 
 int	init_game(t_cub *cub)
 {
+	cub->player = malloc(sizeof(t_play));
 	find_player(cub);
-	init_player(&cub->player, cub->file.player_pos[0] + 0.5, \
+	init_player(cub->player, cub->file.player_pos[0] + 0.5, \
 		cub->file.player_pos[1] + 0.5, cub->file.player_dir);
 	cub->mlx = mlx_init();
 	if (!cub->mlx)

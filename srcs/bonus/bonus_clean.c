@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean.c                                            :+:      :+:    :+:   */
+/*   bonus_clean.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:52:10 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 17:15:15 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/11 15:56:01 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	free_split(char **split)
 {
@@ -65,7 +65,7 @@ void	free_all(t_cub *cub)
 	if (cub->textures)
 	{
 		i = 0;
-		while (i < 4)
+		while (i < 5)
 			free(cub->textures[i++]);
 		free(cub->textures);
 	}	

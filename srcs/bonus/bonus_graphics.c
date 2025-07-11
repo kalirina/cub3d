@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics.c                                         :+:      :+:    :+:   */
+/*   bonus_graphics.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 16:32:03 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/11 11:17:03 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:04:22 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	put_pixel(int x, int y, int color, t_cub *cub)
 {
@@ -32,9 +32,12 @@ void	add_line_to_img(t_cub *cub, t_dda *data, int x, int tex_x)
 	int				tex_y;
 	int				y;
 
-	step = (double) TEXTURE_SIDE / data->line_height;
-	tex_pos = (data->draw_start - HEIGHT / 2 + data->line_height / 2) * step;
 	y = 0;
+	if (data->is_door)
+		data->texture_index = 4;
+	tex_x = find_texture_x(data, cub->player);
+	step = (double)TEXTURE_SIDE / data->line_height;
+	tex_pos = (data->draw_start - HEIGHT / 2 + data->line_height / 2) * step;
 	while (y < data->draw_start)
 		put_pixel(x, y++, cub->file.ceil_color, cub);
 	while (y < data->draw_end)
