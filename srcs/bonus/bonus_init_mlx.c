@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_init_mlx.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:54:15 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 17:12:04 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/11 19:21:01 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	render_game(t_cub *cub)
 	raycasting(cub->player, cub);
 	render_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->min.img, 1590, 0);
+	mlx_put_image_to_window(cub->mlx, cub->win, cub->min->img, 1590, 0);
 	return (0);
 }
 
@@ -73,6 +73,7 @@ void	init_player(t_play *player, double x, double y, char direction)
 int	init_game(t_cub *cub)
 {
 	cub->player = malloc(sizeof(t_play));
+	cub->min = malloc(sizeof(t_min));
 	find_player(cub);
 	init_player(cub->player, cub->file.player_pos[0] + 0.5, \
 		cub->file.player_pos[1] + 0.5, cub->file.player_dir);

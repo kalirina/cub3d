@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 17:54:35 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/11 19:20:16 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ typedef struct s_cub
 	int				line_len;
 	int				endian;
 	char			*addr;
-	t_min			min;
+	t_min			*min;
 }	t_cub;
 
 //parsing

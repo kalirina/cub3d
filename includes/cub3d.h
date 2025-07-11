@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 18:04:45 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/11 18:22:56 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define PI 3.14159265359
 # define FOV 66
 
-# define ROT_KEY_SPEED 1000
-# define MOVE_SPEED 1000
+# define ROT_KEY_SPEED 0.025
+# define MOVE_SPEED 0.025
 
 typedef struct s_col
 {
