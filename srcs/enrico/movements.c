@@ -6,12 +6,11 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:06:04 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/11 12:31:10 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:15:42 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
 
 int	key_pressed(int keycode, void *param)
 {
@@ -59,46 +58,41 @@ int	key_released(int keycode, void *param)
 	return (0);
 }
 
-void	move(t_play *player)
+void	move(t_play *player, t_cub *cub)
 {
-	double	speed;
-
-	speed = 0.05;
 	if (player->key_up)
 	{
-		player->x += player->dir[0] * speed;
-		player->y += player->dir[1] * speed;
+		proceed_move(cub, player, player->x + player->dir[0] * MOVE_SPEED, \
+			player->y + player->dir[1] * MOVE_SPEED);
 	}
 	if (player->key_down)
 	{
-		player->x -= player->dir[0] * speed;
-		player->y -= player->dir[1] * speed;
+		proceed_move(cub, player, player->x - player->dir[0] * MOVE_SPEED, \
+			player->y - player->dir[1] * MOVE_SPEED);
 	}
 	if (player->key_left)
 	{
-		player->x += player->dir[1] * speed;
-		player->y -= player->dir[0] * speed;
+		proceed_move(cub, player, player->x + player->dir[1] * MOVE_SPEED, \
+			player->y - player->dir[0] * MOVE_SPEED);
 	}
 	if (player->key_right)
 	{
-		player->x -= player->dir[1] * speed;
-		player->y += player->dir[0] * speed;
+		proceed_move(cub, player, player->x - player->dir[1] * MOVE_SPEED, \
+			player->y + player->dir[0] * MOVE_SPEED);
 	}
 }
 
 void	rotate(t_play *player)
 {
 	double	tmp_x;
-	double	rot_speed;
 	double	angle;
 
-	rot_speed = 0.025;
 	if (player->left_rotate || player->right_rotate)
 	{
 		if (player->right_rotate)
-			angle = rot_speed;
+			angle = ROT_KEY_SPEED;
 		else if (player->left_rotate)
-			angle = -rot_speed;
+			angle = -ROT_KEY_SPEED;
 		tmp_x = player->dir[0];
 		player->dir[0] = player->dir[0] * cos(angle)
 			- player->dir[1] * sin(angle);
@@ -111,8 +105,8 @@ void	rotate(t_play *player)
 	}
 }
 
-void	handle_movement(t_play *player)
+void	handle_movement(t_play *player, t_cub *cub)
 {
-	move(player);
+	move(player, cub);
 	rotate(player);
 }

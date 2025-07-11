@@ -14,8 +14,8 @@
 
 int	render_game(t_cub *cub)
 {
-	handle_movement(cub->player);
-	raycasting(cub->player, cub);
+	handle_movement(&cub->player, cub);
+	raycasting(&cub->player, cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	return (0);
 }

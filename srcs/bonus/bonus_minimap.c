@@ -59,6 +59,8 @@ void	draw_tile(t_cub *cub, int screen_x, int screen_y, char wall)
 			{
 				if (wall == '1')
 					draw_pixel(px, py, cub->min.wall_color, cub);
+				else if (wall == 'D')
+					draw_pixel(px, py, cub->min.door_color, cub);
 				else if (wall != 'P')
 					draw_pixel(px, py, cub->min.space_color, cub);
 			}

@@ -22,11 +22,13 @@ int	init_min_struct(t_cub *cub)
 		return (free(cub->mlx), free(cub->win), 0);
 	min->addr = mlx_get_data_addr(min->img, &min->bpp, &min->line_len, \
 			&min->endian);
-	min->first = 1;
 	min->scale = 30;
 	min->wall_color = 0x00333333;
 	min->space_color = 0x00CCCCCC;
 	min->player_color = 0xFF0000;
+	min->door_color = 0x00000099;
+	mlx_mouse_hide(cub->mlx, cub->win);
+	mlx_mouse_move(cub->mlx, cub->win, WIDTH / 2, HEIGHT / 2);
 	return (1);
 }
 

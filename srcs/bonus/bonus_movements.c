@@ -6,6 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:55:51 by irkalini          #+#    #+#             */
+
 /*   Updated: 2025/07/11 17:03:23 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -63,16 +64,14 @@ int	key_released(int keycode, void *param)
 void	rotate(t_play *player)
 {
 	double	tmp_x;
-	double	rot_speed;
 	double	angle;
 
-	rot_speed = 0.025;
 	if (player->left_rotate || player->right_rotate)
 	{
 		if (player->right_rotate)
-			angle = rot_speed;
+			angle = ROT_KEY_SPEED;
 		else if (player->left_rotate)
-			angle = -rot_speed;
+			angle = -ROT_KEY_SPEED;
 		tmp_x = player->dir[0];
 		player->dir[0] = player->dir[0] * cos(angle)
 			- player->dir[1] * sin(angle);

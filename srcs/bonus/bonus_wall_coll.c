@@ -43,12 +43,12 @@ void	move_bonus(t_play *player, t_cub *cub)
 			player->x = next_x;
 	}
 	if (player->key_left)
-		move_left_right(player, cub, 0, player->move_speed);
+		move_left_right(player, cub, 0);
 	if (player->key_right)
-		move_left_right(player, cub, 1, player->move_speed);
+		move_left_right(player, cub, 1);
 }
 
-void	move_left_right(t_play *player, t_cub *cub, int key, double speed)
+void	move_left_right(t_play *player, t_cub *cub, int key)
 {
 	double	next_x;
 	double	next_y;
