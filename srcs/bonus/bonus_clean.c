@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:52:10 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/12 11:17:33 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/11 18:47:12 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,13 @@ void	free_all(t_cub *cub)
 		while (i < 5)
 			free(cub->textures[i++]);
 		free(cub->textures);
+	}	
+	if (cub->n_doors != 0)
+	{
+		i = 0;
+		while (i < cub->n_doors)
+			free(cub->doors[i++]);
+		free(cub->doors);
 	}
 	if (cub->min)
 		free(cub->min);

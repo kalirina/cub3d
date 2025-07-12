@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/12 11:08:44 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/12 09:57:13 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # define A 97
 # define S 115
 # define D 100
-# define E 101
 # define LEFT 65361
 # define RIGHT 65363
 # define ESC 65307
@@ -42,6 +41,11 @@
 # define MOVE_SPEED 0.025
 # define ROT_MOUS_SPEED 0.0025
 # define MINIMAP_SIZE 330
+# define E 101
+# define DOOR_OPEN 0
+# define DOOR_CLOSED 1
+# define DOOR_OPENING 2
+# define DOOR_CLOSING 3
 
 typedef struct s_col
 {
@@ -122,10 +126,20 @@ typedef struct	s_play
 	bool	right_rotate;
 }	t_play;
 
+typedef struct s_door
+{
+	int		x;
+	int		y;
+	int		status;
+	double	progress;
+	double	speed;
+}	t_door;
+
 typedef struct s_cub
 {
 	t_file			file;
 	t_play			*player;
+	t_door			**doors;
 	t_min			*min;
 	unsigned int	**textures;
 	void			*img;
@@ -134,6 +148,7 @@ typedef struct s_cub
 	int				bpp;
 	int				line_len;
 	int				endian;
+	int				n_doors;
 	char			*addr;
 }	t_cub;
 
@@ -160,6 +175,10 @@ void	free_file_struct(t_cub *cub);
 void	free_all(t_cub *cub);
 //bonus
 void	open_door(t_cub *cub);
+void	check_doors(t_cub *cub);
+t_door	*find_door(t_cub *cub, int x, int y);
+bool    is_door_open(t_cub *cub, t_dda *data);
+void	init_doors(t_cub *cub);
 int		render_minimap(t_cub *cub);
 int		init_min_struct(t_cub *cub);
 void	clear_image_mini(t_cub *cub);

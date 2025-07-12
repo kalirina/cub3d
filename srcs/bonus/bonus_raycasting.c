@@ -36,9 +36,9 @@ void	check_side(t_cub *cub, t_dda *data)
 	}
 }
 
-void	dda(t_cub *cub, t_dda *data)
+void	dda(t_cub *cub, t_dda *data, bool hit)
 {
-	while (!data->hit)
+	while (!hit)
 	{
 		if (data->side_dist[0] < data->side_dist[1])
 		{
@@ -56,8 +56,8 @@ void	dda(t_cub *cub, t_dda *data)
 			data->hit = true;
 		if (cub->file.map[data->map_cord[1]][data->map_cord[0]] == 'D')
 		{
-			data->hit = true;
-			data->is_door = true;
+			if (!is_door_open(cub, data))
+				hit = true;
 		}
 	}
 	check_side(cub, data);
@@ -116,7 +116,7 @@ void	raycasting(t_play *player, t_cub *cub)
 		data.ray_dir[0] = player->dir[0] + (player->cam[0] * data.cam_pos);
 		data.ray_dir[1] = player->dir[1] + (player->cam[1] * data.cam_pos);
 		config_dda(player, &data);
-		dda(cub, &data);
+		dda(cub, &data, false);
 		data.line_height = get_line_height(&data, player);
 		add_line_to_img(cub, &data, x, find_texture_x(&data, cub->player));
 		x++;

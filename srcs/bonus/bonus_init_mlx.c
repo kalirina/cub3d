@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:54:15 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/12 10:28:25 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/12 11:37:39 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	render_game(t_cub *cub)
 {
 	handle_movement_bonus(cub->player, cub);
 	raycasting(cub->player, cub);
+	check_doors(cub);
 	render_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->min->img, 1590, 0);
@@ -87,8 +88,9 @@ int	init_game(t_cub *cub)
 	cub->addr = mlx_get_data_addr(cub->img, &cub->bpp, &cub->line_len, \
 			&cub->endian);
 	if (!init_min_struct(cub))
-		return (0);
+		return (free_all(cub), 0);
 	init_textures(cub);
+	init_doors(cub);
 	mlx_hook(cub->win, 2, 1L << 0, key_pressed, cub);
 	mlx_hook(cub->win, 3, 1L << 1, key_released, cub);
 	mlx_hook(cub->win, 6, 1L << 6, mouse_move_handler, cub);
