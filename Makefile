@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+         #
+#    By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 12:37:33 by irkalini          #+#    #+#              #
-#    Updated: 2025/07/12 12:16:39 by enrmarti         ###   ########.fr        #
+#    Updated: 2025/07/12 13:26:27 by irkalini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ LIBFT_DIR = ./libft
 MLX_A = ./mlx_linux/minilibx-linux/libmlx.a
 MLX_DIR = ./mlx_linux/minilibx-linux
 
-MLX_FLAGS = -Lmlx_linux/minilibx-linux -l:libmlx_Linux.a -L/usr/lib -lX11 -lXext -lXrandr -lXrender -lm -lpthread -lbsd
+MLX_FLAGS = -Lmlx_linux/minilibx-linux -l:libmlx_Linux.a -L/usr/lib -lX11 -lXext -lXrandr -lXrender -lm -lpthread -lbsd -lXfixes
 
 CC = cc
 FLAGS = -Wall -Wextra -Werror

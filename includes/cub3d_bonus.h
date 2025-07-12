@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/12 12:01:58 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/12 13:29:41 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "../get_next_line/get_next_line.h"
 # include "../libft/libft.h"
@@ -91,7 +91,7 @@ typedef struct s_min
 	int		door_color;
 }	t_min;
 
-typedef struct	s_dda
+typedef struct s_dda
 {
 	double	cam_pos;
 	double	delta[2];
@@ -110,7 +110,7 @@ typedef struct	s_dda
 	bool	is_door;
 }	t_dda;
 
-typedef struct	s_play
+typedef struct s_play
 {
 	double	x;
 	double	y;
@@ -175,7 +175,7 @@ void	free_all(t_cub *cub);
 void	open_door(t_cub *cub);
 void	check_doors(t_cub *cub);
 t_door	*find_door(t_cub *cub, int x, int y);
-bool    is_door_open(t_cub *cub, t_dda *data);
+bool	is_door_open(t_cub *cub, t_dda *data);
 void	init_doors(t_cub *cub);
 int		render_minimap(t_cub *cub);
 int		init_min_struct(t_cub *cub);
