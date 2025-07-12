@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 19:14:10 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/12 09:57:13 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ typedef struct	s_dda
 	int		x;
 	int		side;
 	char	wall_type;
-	bool	is_door;
 }	t_dda;
 
 typedef struct	s_play
@@ -138,8 +137,9 @@ typedef struct s_door
 {
 	int		x;
 	int		y;
-	// bool	open;
 	int		status;
+	double	progress;
+	double	speed;
 }	t_door;
 
 typedef struct s_cub
@@ -182,6 +182,9 @@ void	free_file_struct(t_cub *cub);
 void	free_all(t_cub *cub);
 //bonus
 void	open_door(t_cub *cub);
+void	check_doors(t_cub *cub);
+t_door	*find_door(t_cub *cub, int x, int y);
+bool    is_door_open(t_cub *cub, t_dda *data);
 void	init_doors(t_cub *cub);
 int		render_minimap(t_cub *cub);
 int		init_min_struct(t_cub *cub);

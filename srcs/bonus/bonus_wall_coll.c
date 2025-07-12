@@ -6,16 +6,28 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:44:46 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 14:00:27 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/12 10:41:36 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d_bonus.h"
 
-bool is_walkable(char c)
+bool	is_walkable(t_cub *cub, int y, int x)
 {
-	if (c == '1' || c == 'D')
+	t_door	*d;
+	char	c;
+
+	c = cub->file.map[y][x];
+	if (c == '1')
 		return (false);
+	if (c == 'D')
+	{
+		d = find_door(cub, x, y);
+		if (!d)
+			return (false);
+		if(d->progress > 0.0)
+			return (false);
+	}
 	return (true);
 }
 
@@ -28,18 +40,18 @@ void	move_bonus(t_play *player, t_cub *cub)
 	{
 		next_x = player->x + player->dir[0] * player->move_speed;
 		next_y = player->y + player->dir[1] * player->move_speed;
-		if (is_walkable(cub->file.map[(int)next_y][(int)player->x]))
+		if (is_walkable(cub, (int)next_y,(int)player->x))
 			player->y = next_y;
-		if (is_walkable(cub->file.map[(int)player->y][(int)next_x]))
+		if (is_walkable(cub, (int)player->y, (int)next_x))
 			player->x = next_x;
 	}
 	if (player->key_down)
 	{
 		next_x = player->x - player->dir[0] * player->move_speed;
 		next_y = player->y - player->dir[1] * player->move_speed;
-		if (is_walkable(cub->file.map[(int)next_y][(int)player->x]))
+		if (is_walkable(cub, (int)next_y, (int)player->x))
 			player->y = next_y;
-		if (is_walkable(cub->file.map[(int)player->y][(int)next_x]))
+		if (is_walkable(cub, (int)player->y, (int)next_x))
 			player->x = next_x;
 	}
 	if (player->key_left)
@@ -57,18 +69,80 @@ void	move_left_right(t_play *player, t_cub *cub, int key, double speed)
 	{
 		next_x = player->x + player->dir[1] * speed;
 		next_y = player->y - player->dir[0] * speed;
-		if (is_walkable(cub->file.map[(int)next_y][(int)player->x]))
+		if (is_walkable(cub, (int)next_y, (int)player->x))
 			player->y = next_y;
-		if (is_walkable(cub->file.map[(int)player->y][(int)next_x]))
+		if (is_walkable(cub, (int)player->y, (int)next_x))
 			player->x = next_x;
 	}
 	else
 	{
 		next_x = player->x - player->dir[1] * speed;
 		next_y = player->y + player->dir[0] * speed;
-		if (is_walkable(cub->file.map[(int)next_y][(int)player->x]))
+		if (is_walkable(cub, (int)next_y, (int)player->x))
 			player->y = next_y;
-		if (is_walkable(cub->file.map[(int)player->y][(int)next_x]))
+		if (is_walkable(cub, (int)player->y, (int)next_x))
 			player->x = next_x;
 	}
 }
+
+
+// bool is_walkable(char c)
+// {
+// 	if (c == '1' || c == 'D')
+// 		return (false);
+// 	return (true);
+// }
+
+// void	move_bonus(t_play *player, t_cub *cub)
+// {
+// 	double	next_x;
+// 	double	next_y;
+
+// 	if (player->key_up)
+// 	{
+// 		next_x = player->x + player->dir[0] * player->move_speed;
+// 		next_y = player->y + player->dir[1] * player->move_speed;
+// 		if (is_walkable(cub->file.map[(int)next_y][(int)player->x]))
+// 			player->y = next_y;
+// 		if (is_walkable(cub->file.map[(int)player->y][(int)next_x]))
+// 			player->x = next_x;
+// 	}
+// 	if (player->key_down)
+// 	{
+// 		next_x = player->x - player->dir[0] * player->move_speed;
+// 		next_y = player->y - player->dir[1] * player->move_speed;
+// 		if (is_walkable(cub->file.map[(int)next_y][(int)player->x]))
+// 			player->y = next_y;
+// 		if (is_walkable(cub->file.map[(int)player->y][(int)next_x]))
+// 			player->x = next_x;
+// 	}
+// 	if (player->key_left)
+// 		move_left_right(player, cub, 0, player->move_speed);
+// 	if (player->key_right)
+// 		move_left_right(player, cub, 1, player->move_speed);
+// }
+
+// void	move_left_right(t_play *player, t_cub *cub, int key, double speed)
+// {
+// 	double	next_x;
+// 	double	next_y;
+
+// 	if (key == 0)
+// 	{
+// 		next_x = player->x + player->dir[1] * speed;
+// 		next_y = player->y - player->dir[0] * speed;
+// 		if (is_walkable(cub->file.map[(int)next_y][(int)player->x]))
+// 			player->y = next_y;
+// 		if (is_walkable(cub->file.map[(int)player->y][(int)next_x]))
+// 			player->x = next_x;
+// 	}
+// 	else
+// 	{
+// 		next_x = player->x - player->dir[1] * speed;
+// 		next_y = player->y + player->dir[0] * speed;
+// 		if (is_walkable(cub->file.map[(int)next_y][(int)player->x]))
+// 			player->y = next_y;
+// 		if (is_walkable(cub->file.map[(int)player->y][(int)next_x]))
+// 			player->x = next_x;
+// 	}
+// }

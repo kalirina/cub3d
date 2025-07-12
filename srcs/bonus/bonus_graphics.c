@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 16:32:03 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/11 17:04:22 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/12 09:53:18 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	add_line_to_img(t_cub *cub, t_dda *data, int x, int tex_x)
 	int				y;
 
 	y = 0;
-	if (data->is_door)
+	if (cub->file.map[data->map_cord[1]][data->map_cord[0]] == 'D')
 		data->texture_index = 4;
 	tex_x = find_texture_x(data, cub->player);
 	step = (double)TEXTURE_SIDE / data->line_height;

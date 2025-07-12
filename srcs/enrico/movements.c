@@ -6,12 +6,11 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:06:04 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/11 12:31:10 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/12 11:35:12 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
 
 int	key_pressed(int keycode, void *param)
 {
