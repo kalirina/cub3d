@@ -53,7 +53,7 @@ void	dda(t_cub *cub, t_dda *data, bool hit)
 			data->side = 1;
 		}
 		if (cub->file.map[data->map_cord[1]][data->map_cord[0]] == '1')
-			data->hit = true;
+			hit = true;
 		if (cub->file.map[data->map_cord[1]][data->map_cord[0]] == 'D')
 		{
 			if (!is_door_open(cub, data))

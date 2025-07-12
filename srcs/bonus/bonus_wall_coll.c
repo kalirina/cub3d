@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_wall_coll.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:44:46 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/12 10:41:36 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/12 12:15:27 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	is_walkable(t_cub *cub, int y, int x)
 		d = find_door(cub, x, y);
 		if (!d)
 			return (false);
-		if(d->progress > 0.0)
+		if (d->progress > 0.0)
 			return (false);
 	}
 	return (true);
@@ -38,17 +38,17 @@ void	move_bonus(t_play *player, t_cub *cub)
 
 	if (player->key_up)
 	{
-		next_x = player->x + player->dir[0] * player->move_speed;
-		next_y = player->y + player->dir[1] * player->move_speed;
-		if (is_walkable(cub, (int)next_y,(int)player->x))
+		next_x = player->x + player->dir[0] * MOVE_SPEED;
+		next_y = player->y + player->dir[1] * MOVE_SPEED;
+		if (is_walkable(cub, (int)next_y, (int)player->x))
 			player->y = next_y;
 		if (is_walkable(cub, (int)player->y, (int)next_x))
 			player->x = next_x;
 	}
 	if (player->key_down)
 	{
-		next_x = player->x - player->dir[0] * player->move_speed;
-		next_y = player->y - player->dir[1] * player->move_speed;
+		next_x = player->x - player->dir[0] * MOVE_SPEED;
+		next_y = player->y - player->dir[1] * MOVE_SPEED;
 		if (is_walkable(cub, (int)next_y, (int)player->x))
 			player->y = next_y;
 		if (is_walkable(cub, (int)player->y, (int)next_x))
@@ -67,8 +67,8 @@ void	move_left_right(t_play *player, t_cub *cub, int key)
 
 	if (key == 0)
 	{
-		next_x = player->x + player->dir[1] * speed;
-		next_y = player->y - player->dir[0] * speed;
+		next_x = player->x + player->dir[1] * MOVE_SPEED;
+		next_y = player->y - player->dir[0] * MOVE_SPEED;
 		if (is_walkable(cub, (int)next_y, (int)player->x))
 			player->y = next_y;
 		if (is_walkable(cub, (int)player->y, (int)next_x))
@@ -76,8 +76,8 @@ void	move_left_right(t_play *player, t_cub *cub, int key)
 	}
 	else
 	{
-		next_x = player->x - player->dir[1] * speed;
-		next_y = player->y + player->dir[0] * speed;
+		next_x = player->x - player->dir[1] * MOVE_SPEED;
+		next_y = player->y + player->dir[0] * MOVE_SPEED;
 		if (is_walkable(cub, (int)next_y, (int)player->x))
 			player->y = next_y;
 		if (is_walkable(cub, (int)player->y, (int)next_x))

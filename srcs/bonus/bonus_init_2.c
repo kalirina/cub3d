@@ -6,7 +6,7 @@
 /*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 17:12:03 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/12 11:44:16 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/12 12:32:01 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	init_doors(t_cub *cub)
 	i = 0;
 	y = 0;
 	cub->n_doors = count_doors(cub->file.map);
+	if (cub->n_doors == 0)
+		return ;
 	cub->doors = malloc(sizeof(t_door *) * cub->n_doors);
 	while (cub->file.map[y])
 	{
@@ -62,6 +64,7 @@ void	init_doors(t_cub *cub)
 			{
 				cub->doors[i] = malloc(sizeof(t_door));
 				empty_door(cub->doors[i], x, y);
+				i++;
 			}
 			x++;
 		}

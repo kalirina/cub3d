@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/12 09:57:13 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/12 12:01:58 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ typedef struct	s_dda
 	int		side;
 	char	wall_type;
 	bool	is_door;
-	bool	hit;
 }	t_dda;
 
 typedef struct	s_play
@@ -117,7 +116,6 @@ typedef struct	s_play
 	double	y;
 	double	dir[2];
 	double	cam[2];
-	double	move_speed;
 	bool	key_up;
 	bool	key_down;
 	bool	key_left;

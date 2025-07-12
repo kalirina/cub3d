@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_init_mlx.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:54:15 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/12 11:37:39 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/12 11:59:00 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	init_player(t_play *player, double x, double y, char direction)
 	player->key_left = false;
 	player->left_rotate = false;
 	player->right_rotate = false;
-	player->move_speed = 0.05;
 }
 
 int	init_game(t_cub *cub)

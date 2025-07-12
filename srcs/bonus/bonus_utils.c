@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:29:11 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/12 11:29:35 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/12 12:02:09 by enrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	init_dda(t_dda *t)
 	t->side = 0;
 	t->wall_type = 0;
 	t->is_door = false;
-	t->hit = false;
 	i = -1;
 	while (++i < 2)
 	{
