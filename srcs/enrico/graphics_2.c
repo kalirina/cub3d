@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   graphics_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:06:53 by enrmarti          #+#    #+#             */
 /*   Updated: 2025/07/12 09:23:48 by enrmarti         ###   ########.fr       */
@@ -18,7 +18,7 @@ void	load_texture(t_cub *cub, void *tmp, int i, int y)
 	int		size_line;
 	int		endian;
 	int		x;
-	char	*data;	
+	char	*data;
 
 	data = mlx_get_data_addr(tmp, &bpp, &size_line, &endian);
 	while (y < TEXTURE_SIDE)
@@ -35,15 +35,33 @@ void	load_texture(t_cub *cub, void *tmp, int i, int y)
 	mlx_destroy_image(cub->mlx, tmp);
 }
 
+int	allocate_textures(t_cub *cub)
+{
+	int	i;
+
+	i = 0;
+	cub->textures = malloc(sizeof(unsigned int *) * 4);
+	if (!cub->textures)
+		return (0);
+	while (i < 4)
+	{
+		cub->textures[i] = malloc(sizeof(unsigned int) * TEXTURE_SIDE \
+			* TEXTURE_SIDE);
+		if (!cub->textures[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	init_textures(t_cub *cub)
 {
 	void	*tmp;
 	int		width;
 	int		height;
 
-	cub->textures = malloc(sizeof(unsigned int *) * 4);
-	for(int i = 0; i < 4; i++)
-		cub->textures[i] = malloc(sizeof(unsigned int) * TEXTURE_SIDE * TEXTURE_SIDE);
+	if (!allocate_textures(cub))
+		return ;
 	tmp = mlx_xpm_file_to_image(cub->mlx, cub->file.no_t, &width, &height);
 	if (!tmp)
 		return ;

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
 /*   Updated: 2025/07/12 09:57:13 by enrmarti         ###   ########.fr       */
@@ -37,18 +37,15 @@
 # define PI 3.14159265359
 # define FOV 66
 
-//bonus
+# define ROT_KEY_SPEED 0.025
+# define MOVE_SPEED 0.025
+# define ROT_MOUS_SPEED 0.0025
 # define MINIMAP_SIZE 330
-# define MINIMAP_BLOCK 30
 # define E 101
 # define DOOR_OPEN 0
 # define DOOR_CLOSED 1
 # define DOOR_OPENING 2
 # define DOOR_CLOSING 3
-
-#ifndef BONUS
-# define BONUS 0
-#endif
 
 typedef struct s_col
 {
@@ -87,17 +84,11 @@ typedef struct s_min
 	int		line_len;
 	int		endian;
 	char	*addr;
-	float	player_x;
-	float	player_y;
 	float	scale;
-	float	minimap_size;
-	int		draw_x;
-	int		draw_y;
-	int		speed;
-	int		first;
 	int		wall_color;
 	int		space_color;
 	int		player_color;
+	int		door_color;
 }	t_min;
 
 typedef struct	s_dda
@@ -116,6 +107,8 @@ typedef struct	s_dda
 	int		x;
 	int		side;
 	char	wall_type;
+	bool	is_door;
+	bool	hit;
 }	t_dda;
 
 typedef struct	s_play
@@ -147,6 +140,7 @@ typedef struct s_cub
 	t_file			file;
 	t_play			*player;
 	t_door			**doors;
+	t_min			*min;
 	unsigned int	**textures;
 	void			*img;
 	void			*mlx;
@@ -156,7 +150,6 @@ typedef struct s_cub
 	int				endian;
 	int				n_doors;
 	char			*addr;
-	t_min			min;
 }	t_cub;
 
 //parsing
@@ -190,24 +183,23 @@ int		render_minimap(t_cub *cub);
 int		init_min_struct(t_cub *cub);
 void	clear_image_mini(t_cub *cub);
 void	draw_pixel(int x, int y, int color, t_cub *cub);
-int		mouse_move_handler(int x, int y, t_cub *cub);
+int		mouse_move_handler(int x, int y, void *param);
 void	move_bonus(t_play *player, t_cub *cub);
-void	move_left_right(t_play *player, t_cub *cub, int key, double speed);
+void	move_left_right(t_play *player, t_cub *cub, int key);
 void	handle_movement_bonus(t_play *player, t_cub *cub);
 //movements
 void	put_pixel(int x, int y, int color, t_cub *cub);
 int		key_pressed(int keycode, void *param);
 int		key_released(int keycode, void *param);
-void	handle_movement(t_play *player);
 int		safe_exit(void *param);
-void	clear_image(t_cub *cub);
-// int		render_square(t_cub *cub, int x, int y, int size, int color);
 //graphics
 void	init_textures(t_cub *cub);
+int		allocate_textures(t_cub *cub);
 int		find_texture_x(t_dda *data, t_play *player);
 double	get_line_height(t_dda *data, t_play *player);
 void	add_line_to_img(t_cub *cub, t_dda *data, int x, int tex_x);
 //raycasting
 void	raycasting(t_play *player, t_cub *cub);
+void	init_dda(t_dda *t);
 
 #endif

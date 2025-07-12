@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:38:28 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/04 15:36:38 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/12 10:13:26 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	init_file_struct(t_cub *cub)
 {
 	cub->file.map = NULL;
-	cub->file.tok = NULL;
 	cub->file.tok = malloc(sizeof(char *) * 3);
 	if (!cub->file.tok)
 		return (0);
@@ -36,6 +35,8 @@ int	init_file_struct(t_cub *cub)
 	cub->file.start_map = 0;
 	cub->file.line = NULL;
 	cub->file.data_count = 0;
+	cub->file.player_pos[0] = 0;
+	cub->file.player_pos[0] = 0;
 	return (1);
 }
 

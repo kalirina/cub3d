@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_door.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 13:09:51 by enrmarti          #+#    #+#             */
 /*   Updated: 2025/07/12 11:40:55 by enrmarti         ###   ########.fr       */

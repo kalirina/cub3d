@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 15:24:47 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/12 10:41:21 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,8 @@
 # define PI 3.14159265359
 # define FOV 66
 
-//bonus
-# define MINIMAP_SIZE 330
-# define MINIMAP_BLOCK 30
-
-#ifndef BONUS
-# define BONUS 0
-#endif
+# define ROT_KEY_SPEED 0.025
+# define MOVE_SPEED 0.025
 
 typedef struct s_col
 {
@@ -74,26 +69,6 @@ typedef struct s_file
 	t_col	floor;
 	t_col	ceil;
 }	t_file;
-
-typedef struct s_min
-{
-	void	*img;
-	int		bpp;
-	int		line_len;
-	int		endian;
-	char	*addr;
-	float	player_x;
-	float	player_y;
-	float	scale;
-	float	minimap_size;
-	int		draw_x;
-	int		draw_y;
-	int		speed;
-	int		first;
-	int		wall_color;
-	int		space_color;
-	int		player_color;
-}	t_min;
 
 typedef struct	s_dda
 {
@@ -140,7 +115,6 @@ typedef struct s_cub
 	int				line_len;
 	int				endian;
 	char			*addr;
-	t_min			min;
 }	t_cub;
 
 //parsing
@@ -159,36 +133,28 @@ int		is_digit_string(char *str);
 void	find_player(t_cub *cub);
 //minilibx
 int		init_game(t_cub *cub);
-
 //cleaning
 void	free_split(char **split);
 void	free_tokens(t_file *file, int i);
 void	free_file_struct(t_cub *cub);
 void	free_all(t_cub *cub);
-//bonus
-int		render_minimap(t_cub *cub);
-int		init_min_struct(t_cub *cub);
-void	clear_image_mini(t_cub *cub);
-void	draw_pixel(int x, int y, int color, t_cub *cub);
-int		mouse_move_handler(int x, int y, t_cub *cub);
-void	move_bonus(t_play *player, t_cub *cub);
-void	move_left_right(t_play *player, t_cub *cub, int key, double speed);
-void	handle_movement_bonus(t_play *player, t_cub *cub);
 //movements
 void	put_pixel(int x, int y, int color, t_cub *cub);
 int		key_pressed(int keycode, void *param);
 int		key_released(int keycode, void *param);
-void	handle_movement(t_play *player);
+void	handle_movement(t_play *player, t_cub *cub);
 int		safe_exit(void *param);
 void	clear_image(t_cub *cub);
-// int		render_square(t_cub *cub, int x, int y, int size, int color);
+void	check_border(t_cub *cub, t_play *p, double n_x, double n_y);
+void	proceed_move(t_cub *cub, t_play *p, double n_x, double n_y);
 //graphics
 void	init_textures(t_cub *cub);
+int		allocate_textures(t_cub *cub);
 int		find_texture_x(t_dda *data, t_play *player);
 double	get_line_height(t_dda *data, t_play *player);
 void	add_line_to_img(t_cub *cub, t_dda *data, int x, int tex_x);
 //raycasting
 void	raycasting(t_play *player, t_cub *cub);
-void	*init_dda(t_dda *t);
+void	init_dda(t_dda *t);
 
 #endif

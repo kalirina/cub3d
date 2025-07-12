@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   bonus_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/13 12:21:12 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 17:47:55 by enrmarti         ###   ########.fr       */
+/*   Created: 2025/07/12 10:09:15 by irkalini          #+#    #+#             */
+/*   Updated: 2025/07/12 11:42:44 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	main(int argc, char **argv)
 {
@@ -30,7 +30,10 @@ int	main(int argc, char **argv)
 		return (free_all(cub), 1);
 	cub->player = malloc(sizeof(t_play));
 	if (!cub->player)
-		return (0);
+		return (safe_exit(cub), 1);
+	cub->min = malloc(sizeof(t_min));
+	if (!cub->min)
+		return (safe_exit(cub), 1);
 	if (!init_game(cub))
 		return (1);
 	free_all(cub);

@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:18:21 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/04 14:59:09 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/12 10:44:32 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	parsing(t_cub *cub, char *filename)
 		+ file->floor.b;
 	file->ceil_color = file->ceil.r * 256 * 256 + file->ceil.g * 256 \
 		+ file->ceil.b;
+	if (file->player_found == 0)
+		return (printf("Error\nThere is no player\n"), 0);
 	return (1);
 }
 

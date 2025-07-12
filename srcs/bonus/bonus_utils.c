@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   bonus_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/11 10:59:10 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/11 18:58:32 by enrmarti         ###   ########.fr       */
+/*   Created: 2025/07/12 11:29:11 by irkalini          #+#    #+#             */
+/*   Updated: 2025/07/12 11:29:35 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	init_dda(t_dda *t)
 {
@@ -25,6 +25,8 @@ void	init_dda(t_dda *t)
 	t->x = 0;
 	t->side = 0;
 	t->wall_type = 0;
+	t->is_door = false;
+	t->hit = false;
 	i = -1;
 	while (++i < 2)
 	{

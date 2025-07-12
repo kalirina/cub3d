@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_graphics_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:06:53 by enrmarti          #+#    #+#             */
-/*   Updated: 2025/07/11 15:28:11 by enrmarti         ###   ########.fr       */
+/*   Updated: 2025/07/12 11:18:24 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,45 @@ void	load_texture(t_cub *cub, void *tmp, int i, int y)
 	mlx_destroy_image(cub->mlx, tmp);
 }
 
+int	allocate_textures(t_cub *cub)
+{
+	int	i;
+
+	i = 0;
+	cub->textures = malloc(sizeof(unsigned int *) * 5);
+	if (!cub->textures)
+		return (0);
+	while (i < 5)
+	{
+		cub->textures[i] = malloc(sizeof(unsigned int) * TEXTURE_SIDE \
+			* TEXTURE_SIDE);
+		if (!cub->textures[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	load_door(t_cub *cub, int *width, int *height)
+{
+	void	*tmp;
+
+	tmp = mlx_xpm_file_to_image(cub->mlx, "./textures/door.xpm", \
+		width, height);
+	if (!tmp)
+		return (0);
+	load_texture(cub, tmp, 4, 0);
+	return (1);
+}
+
 void	init_textures(t_cub *cub)
 {
 	void	*tmp;
 	int		width;
 	int		height;
 
-	cub->textures = malloc(sizeof(unsigned int *) * 5);
-	for(int i = 0; i < 5; i++)
-		cub->textures[i] = malloc(sizeof(unsigned int) * TEXTURE_SIDE * TEXTURE_SIDE);
+	if (!allocate_textures(cub))
+		return ;
 	tmp = mlx_xpm_file_to_image(cub->mlx, cub->file.no_t, &width, &height);
 	if (!tmp)
 		return ;
@@ -57,10 +87,8 @@ void	init_textures(t_cub *cub)
 	if (!tmp)
 		return ;
 	load_texture(cub, tmp, 3, 0);
-	tmp = mlx_xpm_file_to_image(cub->mlx, "./textures/door.xpm", &width, &height);
-	if (!tmp)
+	if (!load_door(cub, &width, &height))
 		return ;
-	load_texture(cub, tmp, 4, 0);
 }
 
 int	find_texture_x(t_dda *data, t_play *player)

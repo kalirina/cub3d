@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_init_mlx.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:54:15 by irkalini          #+#    #+#             */
 /*   Updated: 2025/07/12 11:37:39 by enrmarti         ###   ########.fr       */
@@ -19,7 +19,7 @@ int	render_game(t_cub *cub)
 	check_doors(cub);
 	render_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->min.img, 1590, 0);
+	mlx_put_image_to_window(cub->mlx, cub->win, cub->min->img, 1590, 0);
 	return (0);
 }
 
@@ -73,7 +73,6 @@ void	init_player(t_play *player, double x, double y, char direction)
 
 int	init_game(t_cub *cub)
 {
-	cub->player = malloc(sizeof(t_play));
 	find_player(cub);
 	init_player(cub->player, cub->file.player_pos[0] + 0.5, \
 		cub->file.player_pos[1] + 0.5, cub->file.player_dir);
@@ -94,8 +93,6 @@ int	init_game(t_cub *cub)
 	init_doors(cub);
 	mlx_hook(cub->win, 2, 1L << 0, key_pressed, cub);
 	mlx_hook(cub->win, 3, 1L << 1, key_released, cub);
-	mlx_mouse_hide(cub->mlx, cub->win);
-	mlx_mouse_move(cub->mlx, cub->win, WIDTH / 2, HEIGHT / 2);
 	mlx_hook(cub->win, 6, 1L << 6, mouse_move_handler, cub);
 	mlx_hook(cub->win, 17, 0, safe_exit, cub);
 	mlx_loop_hook(cub->mlx, render_game, cub);
