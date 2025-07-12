@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/12 10:41:21 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/12 13:29:10 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_file
 	t_col	ceil;
 }	t_file;
 
-typedef struct	s_dda
+typedef struct s_dda
 {
 	double	cam_pos;
 	double	delta[2];
@@ -88,7 +88,7 @@ typedef struct	s_dda
 	char	wall_type;
 }	t_dda;
 
-typedef struct	s_play
+typedef struct s_play
 {
 	double	x;
 	double	y;
