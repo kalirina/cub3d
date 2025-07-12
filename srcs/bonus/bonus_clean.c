@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:52:10 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 17:44:56 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/12 11:17:33 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	free_all(t_cub *cub)
 			free(cub->textures[i++]);
 		free(cub->textures);
 	}
+	if (cub->min)
+		free(cub->min);
 	free(cub);
 }
 
@@ -79,6 +81,8 @@ int	safe_exit(void *param)
 	cub = (t_cub *)param;
 	if (cub->img)
 		mlx_destroy_image(cub->mlx, cub->img);
+	if (cub->min && cub->min->img)
+		mlx_destroy_image(cub->mlx, cub->min->img);
 	if (cub->win)
 		mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_display(cub->mlx);

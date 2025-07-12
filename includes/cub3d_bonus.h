@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 19:20:16 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/12 11:08:44 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct	s_dda
 	int		side;
 	char	wall_type;
 	bool	is_door;
+	bool	hit;
 }	t_dda;
 
 typedef struct	s_play
@@ -125,6 +126,7 @@ typedef struct s_cub
 {
 	t_file			file;
 	t_play			*player;
+	t_min			*min;
 	unsigned int	**textures;
 	void			*img;
 	void			*mlx;
@@ -133,7 +135,6 @@ typedef struct s_cub
 	int				line_len;
 	int				endian;
 	char			*addr;
-	t_min			*min;
 }	t_cub;
 
 //parsing
@@ -171,16 +172,15 @@ void	handle_movement_bonus(t_play *player, t_cub *cub);
 void	put_pixel(int x, int y, int color, t_cub *cub);
 int		key_pressed(int keycode, void *param);
 int		key_released(int keycode, void *param);
-void	handle_movement(t_play *player);
 int		safe_exit(void *param);
-void	clear_image(t_cub *cub);
-// int		render_square(t_cub *cub, int x, int y, int size, int color);
 //graphics
 void	init_textures(t_cub *cub);
+int		allocate_textures(t_cub *cub);
 int		find_texture_x(t_dda *data, t_play *player);
 double	get_line_height(t_dda *data, t_play *player);
 void	add_line_to_img(t_cub *cub, t_dda *data, int x, int tex_x);
 //raycasting
 void	raycasting(t_play *player, t_cub *cub);
+void	init_dda(t_dda *t);
 
 #endif

@@ -38,10 +38,7 @@ void	check_side(t_cub *cub, t_dda *data)
 
 void	dda(t_cub *cub, t_dda *data)
 {
-	bool	hit;
-
-	hit = false;
-	while (!hit)
+	while (!data->hit)
 	{
 		if (data->side_dist[0] < data->side_dist[1])
 		{
@@ -56,10 +53,10 @@ void	dda(t_cub *cub, t_dda *data)
 			data->side = 1;
 		}
 		if (cub->file.map[data->map_cord[1]][data->map_cord[0]] == '1')
-			hit = true;
+			data->hit = true;
 		if (cub->file.map[data->map_cord[1]][data->map_cord[0]] == 'D')
 		{
-			hit = true;
+			data->hit = true;
 			data->is_door = true;
 		}
 	}
@@ -111,10 +108,10 @@ void	raycasting(t_play *player, t_cub *cub)
 	int		x;
 	double	line_height;
 
+	init_dda(&data);
 	x = 0;
 	while (x < WIDTH)
 	{
-		data.is_door = false;
 		data.cam_pos = ((2 * x) / (double) WIDTH) - 1;
 		data.ray_dir[0] = player->dir[0] + (player->cam[0] * data.cam_pos);
 		data.ray_dir[1] = player->dir[1] + (player->cam[1] * data.cam_pos);

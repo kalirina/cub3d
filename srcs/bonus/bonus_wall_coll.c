@@ -6,13 +6,13 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:44:46 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 17:46:26 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/12 10:23:50 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d_bonus.h"
 
-bool is_walkable(char c)
+bool	is_walkable(char c)
 {
 	if (c == '1' || c == 'D')
 		return (false);

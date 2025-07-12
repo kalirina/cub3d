@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:21:29 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 18:22:56 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/12 10:41:21 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,11 +149,12 @@ void	check_border(t_cub *cub, t_play *p, double n_x, double n_y);
 void	proceed_move(t_cub *cub, t_play *p, double n_x, double n_y);
 //graphics
 void	init_textures(t_cub *cub);
+int		allocate_textures(t_cub *cub);
 int		find_texture_x(t_dda *data, t_play *player);
 double	get_line_height(t_dda *data, t_play *player);
 void	add_line_to_img(t_cub *cub, t_dda *data, int x, int tex_x);
 //raycasting
 void	raycasting(t_play *player, t_cub *cub);
-void	*init_dda(t_dda *t);
+void	init_dda(t_dda *t);
 
 #endif

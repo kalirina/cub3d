@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:50:28 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 18:40:28 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/12 09:29:19 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	init_min_struct(t_cub *cub)
 {
 	t_min	*min;
 
-	min = &cub->min;
-	min->img = mlx_new_image(cub->mlx, 330, 330);
+	min = cub->min;
+	min->img = mlx_new_image(cub->mlx, MINIMAP_SIZE, MINIMAP_SIZE);
 	if (!min->img)
-		return (free(cub->mlx), free(cub->win), 0);
+		return (safe_exit(cub), 0);
 	min->addr = mlx_get_data_addr(min->img, &min->bpp, &min->line_len, \
 			&min->endian);
 	min->scale = 30;
