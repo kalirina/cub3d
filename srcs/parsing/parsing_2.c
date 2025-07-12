@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 18:30:30 by irkalini          #+#    #+#             */
-/*   Updated: 2025/06/30 13:37:35 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/12 13:59:28 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ int	get_tokens(char *line, t_file *file)
 		while (line[i] && line[i] != '\t' && line[i] != ' ' && line[i] != '\n')
 			i++;
 		if (j >= 2)
-			return (0);
+			return (printf("Error\nCannot get data\n"), 0);
 		file->tok[j] = malloc(sizeof(char) * (i - start) + 1);
 		if (!file->tok[j])
-			return (0);
+			return (printf("Error\nCannot get data\n"), 0);
 		ft_strlcpy(file->tok[j], line + start, i - start + 1);
 		j++;
 	}

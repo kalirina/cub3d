@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:18:21 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/12 10:44:32 by irkalini         ###   ########.fr       */
+/*   Updated: 2025/07/12 13:59:54 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	get_texture(t_file *file)
 int	get_data(t_file *file)
 {
 	if (file->tok[1] == NULL)
-		return (0);
+		return (printf("Error\nCannot get data\n"), 0);
 	if (ft_strlen(file->tok[0]) == 2)
 	{
 		if (!get_texture(file))
@@ -105,7 +105,7 @@ int	get_data(t_file *file)
 			return (0);
 	}
 	else
-		return (0);
+		return (printf("Error\nCannot get data\n"), 0);
 	return (1);
 }
 
