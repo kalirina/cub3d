@@ -18,6 +18,7 @@ Since this project uses `minilibx-linux`, you will need to install the required 
 ```bash
 sudo apt-get update
 sudo apt-get install gcc make xorg libxext-dev libbsd-dev
+```
 
 Compile the mandatory part
 
