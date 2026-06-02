@@ -6,7 +6,7 @@
 #    By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 12:37:33 by irkalini          #+#    #+#              #
-#    Updated: 2025/07/12 13:26:27 by irkalini         ###   ########.fr        #
+#    Updated: 2026/06/02 18:18:09 by irkalini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,8 @@ MLX_DIR = ./mlx_linux/minilibx-linux
 
 MLX_FLAGS = -Lmlx_linux/minilibx-linux -l:libmlx_Linux.a -L/usr/lib -lX11 -lXext -lXrandr -lXrender -lm -lpthread -lbsd -lXfixes
 
+MLX_DIR = mlx_linux/minilibx-linux
+
 CC = cc
 FLAGS = -Wall -Wextra -Werror
 
@@ -70,6 +72,10 @@ fclean: clean
 	rm -f $(NAME)
 	rm -f $(LIBFT_A)
 	rm -f $(MLX_A)
+
+update_mlx:
+	rm -rf $(MLX_DIR)
+	git clone https://github.com/42paris/minilibx-linux.git $(MLX_DIR)
 
 re: fclean all
 

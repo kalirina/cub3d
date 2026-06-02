@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_init_mlx.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enrmarti <enrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:54:15 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/12 11:59:00 by enrmarti         ###   ########.fr       */
+/*   Updated: 2026/06/02 18:28:06 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,11 @@ int	init_game(t_cub *cub)
 		return (free_all(cub), 0);
 	init_textures(cub);
 	init_doors(cub);
-	mlx_hook(cub->win, 2, 1L << 0, key_pressed, cub);
-	mlx_hook(cub->win, 3, 1L << 1, key_released, cub);
-	mlx_hook(cub->win, 6, 1L << 6, mouse_move_handler, cub);
-	mlx_hook(cub->win, 17, 0, safe_exit, cub);
-	mlx_loop_hook(cub->mlx, render_game, cub);
+	mlx_hook(cub->win, 2, 1L << 0, (int (*)())key_pressed, cub);
+	mlx_hook(cub->win, 3, 1L << 1, (int (*)())key_released, cub);
+	mlx_hook(cub->win, 6, 1L << 6, (int (*)())mouse_move_handler, cub);
+	mlx_hook(cub->win, 17, 0, (int (*)())safe_exit, cub);
+	mlx_loop_hook(cub->mlx, (int (*)())render_game, cub);
 	mlx_loop(cub->mlx);
 	return (1);
 }

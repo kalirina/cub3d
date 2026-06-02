@@ -6,7 +6,7 @@
 /*   By: irkalini <irkalini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 16:28:00 by irkalini          #+#    #+#             */
-/*   Updated: 2025/07/11 19:00:11 by enrmarti         ###   ########.fr       */
+/*   Updated: 2026/06/02 18:25:02 by irkalini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ int	init_game(t_cub *cub)
 	cub->addr = mlx_get_data_addr(cub->img, &cub->bpp, &cub->line_len, \
 			&cub->endian);
 	init_textures(cub);
-	mlx_hook(cub->win, 2, 1L << 0, key_pressed, cub);
-	mlx_hook(cub->win, 3, 1L << 1, key_released, cub);
-	mlx_hook(cub->win, 17, 0, safe_exit, cub);
-	mlx_loop_hook(cub->mlx, render_game, cub);
+	mlx_hook(cub->win, 2, 1L << 0, (int (*)())key_pressed, cub);
+	mlx_hook(cub->win, 3, 1L << 1, (int (*)())key_released, cub);
+	mlx_hook(cub->win, 17, 0, (int (*)())safe_exit, cub);
+	mlx_loop_hook(cub->mlx, (int (*)())render_game, cub);
 	mlx_loop(cub->mlx);
 	return (1);
 }
